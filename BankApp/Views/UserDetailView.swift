@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserDetailView: View {
-    let user: User
+    @Binding var user: User
     let colors = [Color("blue"), Color("lightBlue")]
     
     var body: some View {
@@ -21,7 +21,7 @@ struct UserDetailView: View {
                     .resizable()
                     .frame(width: 250, height: 250)
             }
-            .padding(.bottom)
+            .padding([.top, .bottom])
             
             Text(user.name)
                 .foregroundColor(.accentColor)
@@ -42,6 +42,6 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: User(name: "Alex", image: "human"))
+        UserDetailView(user: .constant(User(name: "Ignat", password: "12345")))
     }
 }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LogInView: View {
     @State private var userName = ""
-    @State private var password = ""
+    @State private var userPassword = ""
+    @State private var isShowMainView = false
+    @State var user = User(name: "123", password: "123")
     
     var body: some View {
         VStack {
@@ -17,6 +19,7 @@ struct LogInView: View {
                 Text("BankName")
                     .foregroundColor(.accentColor)
                     .font(.system(.title, design: .rounded))
+                    .offset(x: -10, y: 20)
             } icon: {
                 Image("bank")
                     .resizable()
@@ -24,29 +27,33 @@ struct LogInView: View {
                     .opacity(0.6)
             }
             .padding(.bottom, 50)
-
+            
             
             TextField("Inter your name...", text: $userName)
                 .textFieldStyle(GradientTextField(image: "person"))
                 .padding(.bottom, 8)
             
-            TextField("Inter your password...", text: $password)
+            TextField("Inter your password...", text: $userPassword)
                 .textFieldStyle(GradientTextField(image: "key"))
                 .padding(.bottom, 20)
             
             Button {
-                //TODO: Move to ManView
+                isShowMainView = true
+                user = User(name: userName, password: userPassword)
             } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.accentColor)
-                        .frame(height: 50)
-                    
-                    Text("Input")
-                        .foregroundColor(.white)
-                        .font(.system(.title2, design: .rounded))
-                }
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(.accentColor)
+                    .frame(height: 50)
+                
+                Text("Input")
+                    .foregroundColor(.white)
+                    .font(.system(.title2, design: .rounded))
             }
+        }
+        .fullScreenCover(isPresented: $isShowMainView) {
+            HomeView(user: $user)
+        }
         }
         .frame(width: 300)
         .offset(y: -100)
@@ -79,6 +86,6 @@ struct GradientTextField: TextFieldStyle {
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView()
+        LogInView(user: User(name: "Ignat", password: "12345"))
     }
 }

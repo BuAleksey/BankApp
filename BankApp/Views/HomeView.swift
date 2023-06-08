@@ -12,6 +12,8 @@ struct HomeView: View {
     @State private var blur = false
     @State private var isShowingUserDetail = false
     
+    @Binding var user: User
+    
     @State private var coloumns = [
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0)
@@ -74,10 +76,9 @@ struct HomeView: View {
     
     private func header() -> some View {
         HStack {
-            Text("Welcome back,\n Alex!")
+            Text("Welcome back,\n \(user.name)!")
                 .font(.system(size: 22, weight: .bold, design: .default))
                 .foregroundColor(.accentColor)
-            
             Spacer()
             
             ZStack {
@@ -94,7 +95,7 @@ struct HomeView: View {
             .sheet(isPresented: $isShowingUserDetail) {
                 isShowingUserDetail = false
             } content: {
-                UserDetailView(user: User.user)
+                UserDetailView(user: $user)
             }
         }
         .padding([.trailing, .leading])
@@ -123,6 +124,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(user: .constant(User(name: "Ignat", password: "12345")))
     }
 }

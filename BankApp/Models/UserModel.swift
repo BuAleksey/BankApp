@@ -10,7 +10,6 @@ import Foundation
 struct User: Identifiable {
     let id = UUID().uuidString
     let name: String
-    let image: String
-    
-    static let user = User(name: "Alex", image: "human")
+    let password: String
+    var image = "human"
 }
