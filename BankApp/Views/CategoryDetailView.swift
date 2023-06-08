@@ -24,6 +24,7 @@ struct CategoryDetailView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.gray.opacity(0.1))
                         .frame(width: 260)
+                    
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(Color(item.color))
                         .frame(width: CGFloat(item.percent) * 2.6)

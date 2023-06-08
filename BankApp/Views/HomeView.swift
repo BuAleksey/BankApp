@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var selectedItem: Category? = nil
     @State private var blur = false
+    @State private var isShowingUserDetail = false
     
     @State private var coloumns = [
         GridItem(.flexible(), spacing: 0),
@@ -84,6 +85,16 @@ struct HomeView: View {
                     .foregroundColor(Color("blue"))
                     .frame(width: 80, height: 80)
                 Image("human")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+            }
+            .onTapGesture {
+                isShowingUserDetail = true
+            }
+            .sheet(isPresented: $isShowingUserDetail) {
+                isShowingUserDetail = false
+            } content: {
+                UserDetailView(user: User.user)
             }
         }
         .padding([.trailing, .leading])
@@ -103,6 +114,10 @@ struct HomeView: View {
         DispatchQueue.main.async {
             withAnimation(.default) { blur = true }
         }
+    }
+    
+    private func tapToUser() {
+        
     }
 }
 

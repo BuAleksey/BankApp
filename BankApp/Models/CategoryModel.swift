@@ -18,5 +18,5 @@ struct Category: Identifiable {
         Category(title: "Transport", color: "blue", percent: 30),
         Category(title: "Education", color: "purpleBlue", percent: 15),
         Category(title: "Other", color: "lightBlue", percent: 10)
-    ]
+    ].shuffled()
 }
