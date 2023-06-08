@@ -15,15 +15,16 @@ struct CategoryDetailView: View {
             VStack {
                 Text(item.title)
                     .font(.title)
+                    .foregroundColor(.accentColor)
                     .padding()
                 
                 Spacer()
                 
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 10)
+                    RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.gray.opacity(0.1))
                         .frame(width: 260)
-                    RoundedRectangle(cornerRadius: 10)
+                    RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(Color(item.color))
                         .frame(width: CGFloat(item.percent) * 2.6)
                 }
@@ -34,8 +35,8 @@ struct CategoryDetailView: View {
             .frame(width: 300, height: 300)
             .background(.white)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-        .contentShape(RoundedRectangle(cornerRadius: 10))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .contentShape(RoundedRectangle(cornerRadius: 20))
         .frame(width: 300, height: 300)
     }
 }

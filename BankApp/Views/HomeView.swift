@@ -75,7 +75,7 @@ struct HomeView: View {
         HStack {
             Text("Welcome back,\n Alex!")
                 .font(.system(size: 22, weight: .bold, design: .default))
-                .foregroundColor(Color("text"))
+                .foregroundColor(.accentColor)
             
             Spacer()
             

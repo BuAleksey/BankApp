@@ -16,14 +16,14 @@ struct CardView: View {
             VStack(alignment: .leading) {
                 Text("BankName")
                     .font(.system(size: 19, weight: .semibold, design: .default))
-                    .foregroundColor(Color("text"))
+                    .foregroundColor(.accentColor)
                 
                 Spacer()
                 
                 HStack {
                     Text("1234 ••••")
                         .font(.system(size: 15, weight: .medium, design: .default))
-                        .foregroundColor(Color("text"))
+                        .foregroundColor(.accentColor)
                     
                     Spacer()
                     

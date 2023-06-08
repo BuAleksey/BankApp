@@ -18,6 +18,7 @@ struct CategoryItemView: View {
             
             VStack(alignment: .leading) {
                 Text(item.title)
+                    .foregroundColor(.accentColor)
                 
                 Spacer()
                 
