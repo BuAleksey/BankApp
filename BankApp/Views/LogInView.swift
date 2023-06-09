@@ -15,16 +15,17 @@ struct LogInView: View {
     
     var body: some View {
         VStack {
-            Label {
-                Text("BankName")
-                    .foregroundColor(.accentColor)
-                    .font(.system(.title, design: .rounded))
-                    .offset(x: -10, y: 20)
-            } icon: {
+            
+            VStack(spacing: 0) {
                 Image("bank")
                     .resizable()
-                    .frame(width: 100, height: 100)
-                    .opacity(0.6)
+                    .frame(width: 150, height: 150)
+                    .opacity(0.2)
+                
+                Text("BankName")
+                    .foregroundColor(.accentColor)
+                    .font(.system(.body, design: .rounded))
+                    .offset(y:-10)
             }
             .padding(.bottom, 50)
             
@@ -33,27 +34,27 @@ struct LogInView: View {
                 .textFieldStyle(GradientTextField(image: "person"))
                 .padding(.bottom, 8)
             
-            TextField("Inter your password...", text: $userPassword)
-                .textFieldStyle(GradientTextField(image: "key"))
+            SecureTextField(password: $userPassword)
                 .padding(.bottom, 20)
             
             Button {
                 isShowMainView = true
                 user = User(name: userName, password: userPassword)
             } label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.accentColor)
-                    .frame(height: 50)
-                
-                Text("Input")
-                    .foregroundColor(.white)
-                    .font(.system(.title2, design: .rounded))
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(.accentColor)
+                        .frame(height: 50)
+                    
+                    Text("Input")
+                        .foregroundColor(.white)
+                        .font(.system(.title2, design: .rounded))
+                        .fontWeight(.bold)
+                }
             }
-        }
-        .fullScreenCover(isPresented: $isShowMainView) {
-            HomeView(user: $user)
-        }
+            .fullScreenCover(isPresented: $isShowMainView) {
+                HomeView(user: $user)
+            }
         }
         .frame(width: 300)
         .offset(y: -100)
@@ -80,6 +81,30 @@ struct GradientTextField: TextFieldStyle {
                 configuration
             }
             .padding([.leading, .trailing], 8)
+        }
+    }
+}
+
+struct SecureTextField: View {
+    @State private var isSecure = true
+    @Binding var password: String
+    
+    var body: some View {
+        HStack {
+            if isSecure {
+                SecureField("Enter your password...", text: $password)
+                    .textFieldStyle(GradientTextField(image: "key"))
+            } else {
+                TextField("Enter your password...", text: $password)
+                    .textFieldStyle(GradientTextField(image: "key"))
+            }
+        }
+        .overlay(alignment: .trailing) {
+            Image(systemName: isSecure ? "eye.slash" : "eye")
+                .padding(.trailing, 8)
+                .onTapGesture {
+                    isSecure.toggle()
+                }
         }
     }
 }

@@ -73,7 +73,6 @@
 			children = (
 				87B2B4B52A275A3D00270570 /* BankAppApp.swift */,
 				87B2B4B72A275A3D00270570 /* MainView.swift */,
-				870F49972A3207CD000C45DD /* LogInView.swift */,
 				87B2B4CC2A28C57900270570 /* Views */,
 				87B2B4C92A28C2F000270570 /* Models */,
 				87B2B4D02A28CF1B00270570 /* VisualBlurEffect.swift */,
@@ -104,6 +103,7 @@
 		87B2B4CC2A28C57900270570 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				870F49972A3207CD000C45DD /* LogInView.swift */,
 				87B2B4C32A275A8900270570 /* HomeView.swift */,
 				87B2B4D22A28D15A00270570 /* CategoryDetailView.swift */,
 				870F49932A31FA8A000C45DD /* UserDetailView.swift */,
