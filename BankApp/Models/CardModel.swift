@@ -16,5 +16,5 @@ struct Card: Identifiable {
         Card(colors: [Color("blue"), Color("lightBlue")]),
         Card(colors: [Color("purpleBlue"), Color("purple")]),
         Card(colors: [Color("lightBlue"), Color("blue")])
-    ]
+    ].shuffled()
 }

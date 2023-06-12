@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var selectedItem: Category? = nil
     @State private var blur = false
     @State private var isShowingUserDetail = false
-    
-    @Binding var user: User
-    
     @State private var coloumns = [
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0)
     ]
+    
+    @Binding var user: User
+    @Binding var selectedItem: Category?
     
     var body: some View {
         VStack {
@@ -66,15 +65,31 @@ struct HomeView: View {
                         .zIndex(3)
                 }
             }
-            .offset(y: selectedItem == nil ? -100 : 0)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .offset(y: selectedItem == nil ? -50 : 0)
+            .frame(maxWidth: .infinity, maxHeight: selectedItem == nil ? 250 : .infinity)
+            
+            if selectedItem == nil {
+                Button {
+                    print("New card button tapped...")
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                        Text("Open a new card")
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                    }
+                }
+                .offset(y: -50)
+                .frame(maxWidth: .infinity)
+                .frame(height: 43)
+                .padding(32)
+            }
+            Spacer()
         }
         .background(.gray.opacity(0.05))
     }
     
-    @ViewBuilder
-    
-    private func header() -> some View {
+    @ViewBuilder private func header() -> some View {
         HStack {
             Text("Welcome back,\n \(user.name)!")
                 .font(.system(size: 22, weight: .bold, design: .default))
@@ -116,14 +131,10 @@ struct HomeView: View {
             withAnimation(.default) { blur = true }
         }
     }
-    
-    private func tapToUser() {
-        
-    }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: .constant(User(name: "Ignat", password: "12345")))
+        HomeView(user: .constant(User(name: "Ignat", password: "12345")), selectedItem: .constant(nil))
     }
 }

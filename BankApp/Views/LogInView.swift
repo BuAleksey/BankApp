@@ -15,7 +15,6 @@ struct LogInView: View {
     
     var body: some View {
         VStack {
-            
             VStack(spacing: 0) {
                 Image("bank")
                     .resizable()
@@ -28,7 +27,6 @@ struct LogInView: View {
                     .offset(y:-10)
             }
             .padding(.bottom, 50)
-            
             
             TextField("Inter your name...", text: $userName)
                 .textFieldStyle(GradientTextField(image: "person"))
@@ -53,7 +51,7 @@ struct LogInView: View {
                 }
             }
             .fullScreenCover(isPresented: $isShowMainView) {
-                HomeView(user: $user)
+                TabBarView(user: $user)
             }
         }
         .frame(width: 300)
@@ -77,7 +75,6 @@ struct GradientTextField: TextFieldStyle {
             HStack {
                 Image(systemName: image)
                     .foregroundColor(.accentColor)
-                
                 configuration
             }
             .padding([.leading, .trailing], 8)
@@ -99,8 +96,10 @@ struct SecureTextField: View {
                     .textFieldStyle(GradientTextField(image: "key"))
             }
         }
+        .foregroundColor(.accentColor)
         .overlay(alignment: .trailing) {
             Image(systemName: isSecure ? "eye.slash" : "eye")
+                .foregroundColor(.accentColor)
                 .padding(.trailing, 8)
                 .onTapGesture {
                     isSecure.toggle()

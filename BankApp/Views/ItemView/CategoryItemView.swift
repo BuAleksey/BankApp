@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CategoryItemView: View {
-    
     let item: Category
     
     var body: some View {

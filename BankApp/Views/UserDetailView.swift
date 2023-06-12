@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserDetailView: View {
     @Binding var user: User
+    
     let colors = [Color("blue"), Color("lightBlue")]
     
     var body: some View {
