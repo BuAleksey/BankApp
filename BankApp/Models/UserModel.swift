@@ -12,4 +12,6 @@ struct User: Identifiable {
     let name: String
     let password: String
     var image = "human"
+    var mail = "oldf@gmail.com"
+    var phoneNumber = "8(903)782-12-16"
 }

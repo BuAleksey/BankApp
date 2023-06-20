@@ -25,6 +25,22 @@ struct UserDetailView: View {
                 .foregroundColor(.accentColor)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+                .padding(.bottom, 30)
+            
+            VStack(spacing: 8){
+                HStack {
+                    Image(systemName: "envelope")
+                        .fontWeight(.heavy)
+                    Text(user.mail)
+                    Spacer()
+                }
+                HStack {
+                    Image(systemName: "phone")
+                        .fontWeight(.heavy)
+                    Text(user.phoneNumber)
+                    Spacer()
+                }
+            }
             
             Spacer()
             
