@@ -51,7 +51,7 @@ struct LogInView: View {
                 }
             }
             .fullScreenCover(isPresented: $isShowMainView) {
-                TabBarView(user: $user)
+                TabBarView(user: $user, isShowMainView: $isShowMainView)
             }
         }
         .frame(width: 300)

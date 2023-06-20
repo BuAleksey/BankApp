@@ -9,20 +9,17 @@ import SwiftUI
 
 struct UserDetailView: View {
     @Binding var user: User
+    @Binding var isShowMainView: Bool
+    @Environment (\.dismiss) var dissmis
     
     let colors = [Color("blue"), Color("lightBlue")]
     
     var body: some View {
         VStack {
-            ZStack {
-                Circle()
-                    .frame(width: 350, height: 350)
-                    .foregroundColor(Color("purple").opacity(0.4))
-                Image(user.image)
-                    .resizable()
-                    .frame(width: 250, height: 250)
-            }
-            .padding([.top, .bottom])
+            Image(user.image)
+                .resizable()
+                .frame(width: 250, height: 250)
+                .padding([.top, .bottom])
             
             Text(user.name)
                 .foregroundColor(.accentColor)
@@ -30,7 +27,24 @@ struct UserDetailView: View {
                 .fontWeight(.heavy)
             
             Spacer()
+            
+            Button {
+                isShowMainView = false
+                dissmis()
+            } label: {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                    Text("Log out")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                }
+            }
+            .padding(30)
         }
+        .padding(.top, 30)
         .padding()
         .frame(maxWidth: .infinity)
         .background(LinearGradient(
@@ -43,6 +57,6 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: .constant(User(name: "Ignat", password: "12345")))
+        UserDetailView(user: .constant(User(name: "Ignat", password: "12345")), isShowMainView: .constant(false))
     }
 }

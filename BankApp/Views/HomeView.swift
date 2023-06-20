@@ -17,6 +17,7 @@ struct HomeView: View {
     
     @Binding var user: User
     @Binding var selectedItem: Category?
+    @Binding var isShowMainView: Bool
     
     var body: some View {
         VStack {
@@ -110,7 +111,7 @@ struct HomeView: View {
             .sheet(isPresented: $isShowingUserDetail) {
                 isShowingUserDetail = false
             } content: {
-                UserDetailView(user: $user)
+                UserDetailView(user: $user, isShowMainView: $isShowMainView)
             }
         }
         .padding([.trailing, .leading])
@@ -135,6 +136,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: .constant(User(name: "Ignat", password: "12345")), selectedItem: .constant(nil))
+        HomeView(user: .constant(User(name: "Ignat", password: "12345")), selectedItem: .constant(nil), isShowMainView: .constant(true))
     }
 }

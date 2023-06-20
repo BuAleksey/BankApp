@@ -12,6 +12,7 @@ struct TabBarView: View {
     @State var selectedItem: Category? = nil
     
     @Binding var user: User
+    @Binding var isShowMainView: Bool
     
     var body: some View {
         ZStack {
@@ -20,7 +21,7 @@ struct TabBarView: View {
                     ForEach(Tab.allCases, id: \.rawValue) { tab in
                         switch selectedTab {
                         case .house:
-                            HomeView(user: $user, selectedItem: $selectedItem)
+                            HomeView(user: $user, selectedItem: $selectedItem, isShowMainView: $isShowMainView)
                                 .edgesIgnoringSafeArea(.bottom)
                         case .creditcard:
                             SendView()
@@ -43,6 +44,6 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView(user: .constant(User(name: "Ignat", password: "12345")))
+        TabBarView(user: .constant(User(name: "Ignat", password: "12345")), isShowMainView: .constant(true))
     }
 }
