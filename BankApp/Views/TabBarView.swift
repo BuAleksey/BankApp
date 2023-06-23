@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @State var selectedTab: Tab = .house
-    @State var selectedItem: Category? = nil
+    @State private var selectedTab: Tab = .house
+    @State private var selectedItem: Category? = nil
     
     @Binding var user: User
     @Binding var isShowMainView: Bool
@@ -22,7 +22,6 @@ struct TabBarView: View {
                         switch selectedTab {
                         case .house:
                             HomeView(user: $user, selectedItem: $selectedItem, isShowMainView: $isShowMainView)
-                                .edgesIgnoringSafeArea(.bottom)
                         case .creditcard:
                             SendView()
                         case .gearshape:
@@ -30,6 +29,7 @@ struct TabBarView: View {
                         }
                     }
                 }
+                .edgesIgnoringSafeArea(.bottom)
             }
             
             VStack {
@@ -44,6 +44,6 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView(user: .constant(User(name: "Ignat", password: "12345")), isShowMainView: .constant(true))
+        TabBarView(user: .constant(User(name: "", password: "")), isShowMainView: .constant(true))
     }
 }

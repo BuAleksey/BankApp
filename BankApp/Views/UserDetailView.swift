@@ -10,9 +10,10 @@ import SwiftUI
 struct UserDetailView: View {
     @Binding var user: User
     @Binding var isShowMainView: Bool
+    
     @Environment (\.dismiss) var dissmis
     
-    let colors = [Color("blue"), Color("lightBlue")]
+    private let colors = [Color("blue"), Color("lightBlue")]
     
     var body: some View {
         VStack {
@@ -44,20 +45,16 @@ struct UserDetailView: View {
             
             Spacer()
             
-            Button {
-                isShowMainView = false
-                dissmis()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(height: 50)
-                        .frame(maxWidth: .infinity)
-                    Text("Log out")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                }
+            Button(action: logOutButtonTapped) {
+                Text("Log out")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .background(Color.accentColor)
+            .cornerRadius(10)
             .padding(30)
         }
         .padding(.top, 30)
@@ -68,6 +65,11 @@ struct UserDetailView: View {
             startPoint: .top,
             endPoint: .bottom
         ))
+    }
+    
+    private func logOutButtonTapped() {
+        isShowMainView = false
+        dissmis()
     }
 }
 

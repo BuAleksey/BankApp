@@ -8,22 +8,26 @@
 import SwiftUI
 
 struct SendView: View {
-    @State var payments = ""
-    @State var phone = ""
+    @State private var payments = ""
+    @State private var phone = ""
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 HStack {
                     Text("Payments")
+                    
                     Spacer()
+                    
                     Image(systemName: "qrcode.viewfinder")
                         .foregroundColor(.blue)
                 }
                 .font(.system(.title, design: .rounded, weight: .bold))
+                .padding(.trailing)
                 
                 TextField("Payments", text: $payments)
                     .textFieldStyle(GradientTextField(image: "magnifyingglass"))
+                    .padding(.trailing)
                     .padding(.bottom, 30)
                 
                 Text("Transfer by phone")
@@ -31,6 +35,7 @@ struct SendView: View {
                 
                 TextField("Enter name or phone number", text: $phone)
                     .textFieldStyle(GradientTextField(image: "phone"))
+                    .padding(.trailing)
                     .padding(.bottom, 30)
                 
                 Text("Transfers")
@@ -67,9 +72,10 @@ struct SendView: View {
                     }
                 }
             }
-            .padding()
-            .background(.gray.opacity(0.05))
+            .padding([.leading, .top])
         }
+        .edgesIgnoringSafeArea(.bottom)
+        .background(.gray.opacity(0.05))
     }
 }
 

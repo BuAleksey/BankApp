@@ -10,6 +10,7 @@
 		870F49942A31FA8A000C45DD /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49932A31FA8A000C45DD /* UserDetailView.swift */; };
 		870F49962A31FDBC000C45DD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49952A31FDBC000C45DD /* UserModel.swift */; };
 		870F49982A3207CD000C45DD /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49972A3207CD000C45DD /* LogInView.swift */; };
+		874327BE2A4636A800999F6C /* CustomTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874327BD2A4636A800999F6C /* CustomTextFields.swift */; };
 		8753D8282A437F9B003E8CF5 /* PaymentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D8272A437F9B003E8CF5 /* PaymentsView.swift */; };
 		8753D82A2A438403003E8CF5 /* PaymetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D8292A438403003E8CF5 /* PaymetsModel.swift */; };
 		87A29A622A36DF9300BA6D11 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A29A612A36DF9300BA6D11 /* CustomTabBar.swift */; };
@@ -32,6 +33,7 @@
 		870F49932A31FA8A000C45DD /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		870F49952A31FDBC000C45DD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		870F49972A3207CD000C45DD /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		874327BD2A4636A800999F6C /* CustomTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFields.swift; sourceTree = "<group>"; };
 		8753D8272A437F9B003E8CF5 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsView.swift; sourceTree = "<group>"; };
 		8753D8292A438403003E8CF5 /* PaymetsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymetsModel.swift; sourceTree = "<group>"; };
 		87A29A612A36DF9300BA6D11 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				870F49972A3207CD000C45DD /* LogInView.swift */,
+				874327BD2A4636A800999F6C /* CustomTextFields.swift */,
 				87A29A632A36E46F00BA6D11 /* TabBarView.swift */,
 				87B2B4C32A275A8900270570 /* HomeView.swift */,
 				87B2B4D22A28D15A00270570 /* CategoryDetailView.swift */,
@@ -213,6 +216,7 @@
 				87B2B4B62A275A3D00270570 /* BankAppApp.swift in Sources */,
 				87B2B4C82A276F0600270570 /* CardModel.swift in Sources */,
 				870F49942A31FA8A000C45DD /* UserDetailView.swift in Sources */,
+				874327BE2A4636A800999F6C /* CustomTextFields.swift in Sources */,
 				87B2B4D12A28CF1B00270570 /* VisualBlurEffect.swift in Sources */,
 				870F49962A31FDBC000C45DD /* UserModel.swift in Sources */,
 			);

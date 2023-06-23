@@ -53,7 +53,9 @@ struct HomeView: View {
                 .zIndex(1)
                 
                 if blur {
-                    VisualBlurEffect(uiVisualEffect: UIBlurEffect(style: .systemUltraThinMaterial))
+                    VisualBlurEffect(uiVisualEffect: UIBlurEffect(
+                        style: .systemUltraThinMaterial
+                    ))
                         .ignoresSafeArea(.all)
                         .onTapGesture {
                             tapToBack()
@@ -67,24 +69,25 @@ struct HomeView: View {
                 }
             }
             .offset(y: selectedItem == nil ? -50 : 0)
-            .frame(maxWidth: .infinity, maxHeight: selectedItem == nil ? 250 : .infinity)
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: selectedItem == nil ? 250 : .infinity
+            )
             
             if selectedItem == nil {
-                Button {
-                    print("New card button tapped...")
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 20)
-                        Text("Open a new card")
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                    }
+                Button(action: openANewCardTapped) {
+                    Text("Open a new card")
+                        .foregroundColor(.white)
+                        .font(.system(.title2, design: .rounded))
                 }
-                .offset(y: -50)
                 .frame(maxWidth: .infinity)
-                .frame(height: 43)
+                .frame(height: 50)
+                .background(Color.accentColor)
+                .cornerRadius(10)
                 .padding(32)
+                .offset(y: -50)
             }
+            
             Spacer()
         }
         .background(.gray.opacity(0.05))
@@ -95,6 +98,7 @@ struct HomeView: View {
             Text("Welcome back,\n \(user.name)!")
                 .font(.system(size: 22, weight: .bold, design: .default))
                 .foregroundColor(.accentColor)
+            
             Spacer()
             
             ZStack {
@@ -131,6 +135,10 @@ struct HomeView: View {
         DispatchQueue.main.async {
             withAnimation(.default) { blur = true }
         }
+    }
+    
+    private func openANewCardTapped() {
+        print("New card button tapped...")
     }
 }
 

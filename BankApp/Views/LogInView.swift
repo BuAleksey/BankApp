@@ -11,7 +11,7 @@ struct LogInView: View {
     @State private var userName = ""
     @State private var userPassword = ""
     @State private var isShowMainView = false
-    @State var user = User(name: "123", password: "123")
+    @State private var user = User(name: "123", password: "123")
     
     var body: some View {
         VStack {
@@ -35,21 +35,15 @@ struct LogInView: View {
             SecureTextField(password: $userPassword)
                 .padding(.bottom, 20)
             
-            Button {
-                isShowMainView = true
-                user = User(name: userName, password: userPassword)
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.accentColor)
-                        .frame(height: 50)
-                    
-                    Text("Input")
-                        .foregroundColor(.white)
-                        .font(.system(.title2, design: .rounded))
-                        .fontWeight(.bold)
-                }
+            Button(action: inputButtonTapped) {
+                Text("Input")
+                    .foregroundColor(.white)
+                    .font(.system(.title2, design: .rounded))
+                    .fontWeight(.bold)
             }
+            .frame(width: 300, height: 50)
+            .background(Color.accentColor)
+            .cornerRadius(10)
             .fullScreenCover(isPresented: $isShowMainView) {
                 TabBarView(user: $user, isShowMainView: $isShowMainView)
             }
@@ -57,59 +51,15 @@ struct LogInView: View {
         .frame(width: 300)
         .offset(y: -100)
     }
-}
-
-struct GradientTextField: TextFieldStyle {
-    let image: String
     
-    func _body(configuration: TextField<Self._Label>) -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(LinearGradient(
-                    colors: [Color("blue"), Color("lightBlue")],
-                    startPoint: .leading,
-                    endPoint: .trailing
-                ))
-                .frame(height: 40)
-            
-            HStack {
-                Image(systemName: image)
-                    .foregroundColor(.accentColor)
-                configuration
-            }
-            .padding([.leading, .trailing], 8)
-        }
-    }
-}
-
-struct SecureTextField: View {
-    @State private var isSecure = true
-    @Binding var password: String
-    
-    var body: some View {
-        HStack {
-            if isSecure {
-                SecureField("Enter your password...", text: $password)
-                    .textFieldStyle(GradientTextField(image: "key"))
-            } else {
-                TextField("Enter your password...", text: $password)
-                    .textFieldStyle(GradientTextField(image: "key"))
-            }
-        }
-        .foregroundColor(.accentColor)
-        .overlay(alignment: .trailing) {
-            Image(systemName: isSecure ? "eye.slash" : "eye")
-                .foregroundColor(.accentColor)
-                .padding(.trailing, 8)
-                .onTapGesture {
-                    isSecure.toggle()
-                }
-        }
+    private func inputButtonTapped() {
+        isShowMainView = true
+        user = User(name: userName, password: userPassword)
     }
 }
 
 struct LogInView_Previews: PreviewProvider {
     static var previews: some View {
-        LogInView(user: User(name: "Ignat", password: "12345"))
+        LogInView()
     }
 }
