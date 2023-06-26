@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Binding var user: User
+    @Binding var selectedItem: Category?
+    @Binding var isShowMainView: Bool
+    
     @State private var blur = false
     @State private var isShowingUserDetail = false
     @State private var coloumns = [
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0)
     ]
-    
-    @Binding var user: User
-    @Binding var selectedItem: Category?
-    @Binding var isShowMainView: Bool
     
     var body: some View {
         VStack {
@@ -27,9 +27,9 @@ struct HomeView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
-                        ForEach(Card.colors) { colors in
+                        ForEach(Card.cards) { card in
                             GeometryReader { geo in
-                                CardView(colors: colors.colors)
+                                CardView(card: card)
                                     .rotation3DEffect(
                                         .degrees(-Double(geo.frame(in: .global).minX/15)),
                                         axis: (x: 0, y: 1, z: 0)
@@ -75,17 +75,10 @@ struct HomeView: View {
             )
             
             if selectedItem == nil {
-                Button(action: openANewCardTapped) {
-                    Text("Open a new card")
-                        .foregroundColor(.white)
-                        .font(.system(.title2, design: .rounded))
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .background(Color.accentColor)
-                .cornerRadius(10)
-                .padding(32)
-                .offset(y: -50)
+                CustomButton(
+                    action: openANewCardTapped,
+                    title: "Open a new card"
+                )
             }
             
             Spacer()

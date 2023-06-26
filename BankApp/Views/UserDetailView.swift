@@ -42,20 +42,9 @@ struct UserDetailView: View {
                     Spacer()
                 }
             }
-            
             Spacer()
             
-            Button(action: logOutButtonTapped) {
-                Text("Log out")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 50)
-            .background(Color.accentColor)
-            .cornerRadius(10)
-            .padding(30)
+            CustomButton(action: logOutButtonTapped, title: "Log out")
         }
         .padding(.top, 30)
         .padding()

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
-    let colors: [Color]
+    let card: Card
     
     var body: some View {
         ZStack {
@@ -20,19 +20,21 @@ struct CardView: View {
                 Spacer()
                 
                 HStack {
-                    Text("1234 ••••")
+                    Text(card.number)
                         .font(.system(size: 15, weight: .medium, design: .default))
                         .foregroundColor(.accentColor)
                     
+                    Text(card.currency)
+                    
                     Spacer()
                     
-                    Image("masterCard")
+                    Image(card.paymentSystem.rawValue)
                 }
             }
             .padding()
         }
         .frame(width: 242, height: 153)
-        .background(LinearGradient(colors: colors, startPoint: .leading, endPoint: .trailing))
+        .background(LinearGradient(colors: card.colors, startPoint: .leading, endPoint: .trailing))
         .cornerRadius(15)
         .shadow(color: .accentColor.opacity(0.2), radius: 5, x: 4, y: 4)
         .padding()
@@ -41,6 +43,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(colors: [Color("purple"), Color("lightBlue")])
+        CardView(card: Card(colors: [Color("purple"), Color("purpleBlue")], number: "• 5013", currency: "₽", paymentSystem: .mir))
     }
 }

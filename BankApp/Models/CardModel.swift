@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct Card: Identifiable {
-    var id = UUID().uuidString
-    var colors: [Color]
+    let id = UUID().uuidString
+    let colors: [Color]
+    let number: String
+    let currency: String
+    let paymentSystem: PaymentSystem
     
-    static let colors = [
-        Card(colors: [Color("purple"), Color("purpleBlue")]),
-        Card(colors: [Color("blue"), Color("lightBlue")]),
-        Card(colors: [Color("purpleBlue"), Color("purple")]),
-        Card(colors: [Color("lightBlue"), Color("blue")])
+    static let cards = [
+        Card(colors: [Color("purple"), Color("purpleBlue")], number: "• 5013", currency: "₽", paymentSystem: .mir),
+        Card(colors: [Color("blue"), Color("lightBlue")], number: "• 5023", currency: "$", paymentSystem: .masterCard),
+        Card(colors: [Color("purpleBlue"), Color("purple")], number: "• 5044", currency: "€", paymentSystem: .visa),
+        Card(colors: [Color("lightBlue"), Color("blue")], number: "• 5053", currency: "¥", paymentSystem: .unionPay)
     ].shuffled()
+}
+
+enum PaymentSystem: String {
+    case mir, masterCard, visa, unionPay
 }

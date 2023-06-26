@@ -26,21 +26,13 @@ struct LogInView: View {
             SecureTextField(password: $userPassword)
                 .padding(.bottom, 20)
             
-            Button(action: inputButtonTapped) {
-                Text("Input")
-                    .foregroundColor(.white)
-                    .font(.system(.title2, design: .rounded))
-                    .fontWeight(.bold)
-            }
-            .frame(width: 300, height: 50)
-            .background(Color.accentColor)
-            .cornerRadius(10)
-            .fullScreenCover(isPresented: $isShowMainView) {
-                TabBarView(user: $user, isShowMainView: $isShowMainView)
-            }
-            .alert("Wrong format", isPresented: $isShowAlert, actions: {}) {
-                Text("Enter your name and password")
-            }
+            CustomButton(action: inputButtonTapped, title: "Input")
+                .fullScreenCover(isPresented: $isShowMainView) {
+                    TabBarView(user: $user, isShowMainView: $isShowMainView)
+                }
+                .alert("Wrong format", isPresented: $isShowAlert, actions: {}) {
+                    Text("Enter your name and password")
+                }
         }
         .frame(width: 300)
         .offset(y: -100)
