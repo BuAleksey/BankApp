@@ -24,7 +24,7 @@ struct CardView: View {
                         .font(.system(size: 15, weight: .medium, design: .default))
                         .foregroundColor(.accentColor)
                     
-                    Text(card.currency)
+                    Text(returnCurrency())
                     
                     Spacer()
                     
@@ -39,10 +39,23 @@ struct CardView: View {
         .shadow(color: .accentColor.opacity(0.2), radius: 5, x: 4, y: 4)
         .padding()
     }
+    
+    private func returnCurrency() -> String {
+        switch card.currency {
+        case .rub:
+            return "₽"
+        case .usd:
+            return "$"
+        case .euro:
+            return "€"
+        case .yuan:
+            return "¥"
+        }
+    }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(colors: [Color("purple"), Color("purpleBlue")], number: "• 5013", currency: "₽", paymentSystem: .mir))
+        CardView(card: Card(currency: .rub, paymentSystem: .mir))
     }
 }

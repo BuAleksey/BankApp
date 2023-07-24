@@ -14,6 +14,7 @@ struct HomeView: View {
     
     @State private var blur = false
     @State private var isShowingUserDetail = false
+    @State private var isShowingNewCardView = false
     @State private var coloumns = [
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0)
@@ -56,11 +57,11 @@ struct HomeView: View {
                     VisualBlurEffect(uiVisualEffect: UIBlurEffect(
                         style: .systemUltraThinMaterial
                     ))
-                        .ignoresSafeArea(.all)
-                        .onTapGesture {
-                            tapToBack()
-                        }
-                        .zIndex(2)
+                    .ignoresSafeArea(.all)
+                    .onTapGesture {
+                        tapToBack()
+                    }
+                    .zIndex(2)
                 }
                 
                 if selectedItem != nil {
@@ -76,9 +77,12 @@ struct HomeView: View {
             
             if selectedItem == nil {
                 CustomButton(
-                    action: openANewCardTapped,
+                    action: { isShowingNewCardView.toggle() },
                     title: "Open a new card"
                 )
+                .fullScreenCover(isPresented: $isShowingNewCardView) {
+                    NewCardView(isShowingNewCardView: $isShowingNewCardView)
+                }
             }
             
             Spacer()
@@ -128,10 +132,6 @@ struct HomeView: View {
         DispatchQueue.main.async {
             withAnimation(.default) { blur = true }
         }
-    }
-    
-    private func openANewCardTapped() {
-        print("New card button tapped...")
     }
 }
 

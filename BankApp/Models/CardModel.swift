@@ -9,19 +9,40 @@ import SwiftUI
 
 struct Card: Identifiable {
     let id = UUID().uuidString
-    let colors: [Color]
-    let number: String
-    let currency: String
+    let colors = [Color("blue"), Color("lightBlue")]
+    let number = generateCardNumber()
+    let currency: Currency
     let paymentSystem: PaymentSystem
     
-    static let cards = [
-        Card(colors: [Color("purple"), Color("purpleBlue")], number: "• 5013", currency: "₽", paymentSystem: .mir),
-        Card(colors: [Color("blue"), Color("lightBlue")], number: "• 5023", currency: "$", paymentSystem: .masterCard),
-        Card(colors: [Color("purpleBlue"), Color("purple")], number: "• 5044", currency: "€", paymentSystem: .visa),
-        Card(colors: [Color("lightBlue"), Color("blue")], number: "• 5053", currency: "¥", paymentSystem: .unionPay)
+    static var cards = [
+        Card(
+            currency: .rub,
+            paymentSystem: .mir
+        ),
+        Card(
+            currency: .usd,
+            paymentSystem: .masterCard
+        ),
+        Card(
+            currency: .euro,
+            paymentSystem: .visa
+        ),
+        Card(
+            currency: .yuan,
+            paymentSystem: .unionPay
+        )
     ].shuffled()
+    
+    private static func generateCardNumber() -> String {
+        let randomNumber = arc4random_uniform(9000) + 1000
+        return "• " + String(randomNumber)
+    }
 }
 
-enum PaymentSystem: String {
+enum PaymentSystem: String, CaseIterable {
     case mir, masterCard, visa, unionPay
+}
+
+enum Currency: String, CaseIterable {
+    case rub, usd, euro, yuan
 }

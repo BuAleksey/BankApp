@@ -10,6 +10,7 @@
 		870F49942A31FA8A000C45DD /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49932A31FA8A000C45DD /* UserDetailView.swift */; };
 		870F49962A31FDBC000C45DD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49952A31FDBC000C45DD /* UserModel.swift */; };
 		870F49982A3207CD000C45DD /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49972A3207CD000C45DD /* LogInView.swift */; };
+		874040E02A6E69E4001EEDFE /* NewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874040DF2A6E69E4001EEDFE /* NewCardView.swift */; };
 		874327BE2A4636A800999F6C /* CustomTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874327BD2A4636A800999F6C /* CustomTextFields.swift */; };
 		874327C02A48B8FB00999F6C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874327BF2A48B8FB00999F6C /* CustomButton.swift */; };
 		8753D8282A437F9B003E8CF5 /* PaymentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D8272A437F9B003E8CF5 /* PaymentsView.swift */; };
@@ -34,6 +35,7 @@
 		870F49932A31FA8A000C45DD /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		870F49952A31FDBC000C45DD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		870F49972A3207CD000C45DD /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		874040DF2A6E69E4001EEDFE /* NewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardView.swift; sourceTree = "<group>"; };
 		874327BD2A4636A800999F6C /* CustomTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFields.swift; sourceTree = "<group>"; };
 		874327BF2A48B8FB00999F6C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8753D8272A437F9B003E8CF5 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,103 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		874040D42A6E5EA3001EEDFE /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				870F49972A3207CD000C45DD /* LogInView.swift */,
+				874040D52A6E5F14001EEDFE /* SubViews */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		874040D52A6E5F14001EEDFE /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				874327BD2A4636A800999F6C /* CustomTextFields.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		874040D62A6E5F3A001EEDFE /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				87B2B4C32A275A8900270570 /* HomeView.swift */,
+				874040D72A6E5F4E001EEDFE /* SubVoews */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		874040D72A6E5F4E001EEDFE /* SubVoews */ = {
+			isa = PBXGroup;
+			children = (
+				87B2B4C52A27674D00270570 /* CardView.swift */,
+				87B2B4CE2A28C78D00270570 /* CategoryItemView.swift */,
+				87B2B4D02A28CF1B00270570 /* VisualBlurEffect.swift */,
+				87B2B4D22A28D15A00270570 /* CategoryDetailView.swift */,
+				874040DD2A6E6976001EEDFE /* UserDetailView */,
+				874040DE2A6E6987001EEDFE /* NewCardView */,
+			);
+			path = SubVoews;
+			sourceTree = "<group>";
+		};
+		874040D82A6E5F65001EEDFE /* SendView */ = {
+			isa = PBXGroup;
+			children = (
+				87A29A652A36E52100BA6D11 /* SendView.swift */,
+				874040D92A6E5F6F001EEDFE /* SubViews */,
+			);
+			path = SendView;
+			sourceTree = "<group>";
+		};
+		874040D92A6E5F6F001EEDFE /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				8753D8272A437F9B003E8CF5 /* PaymentsView.swift */,
+			);
+			name = SubViews;
+			sourceTree = "<group>";
+		};
+		874040DA2A6E5FA1001EEDFE /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				87A29A672A36E52F00BA6D11 /* SettingsView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		874040DB2A6E5FF6001EEDFE /* TabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				87A29A632A36E46F00BA6D11 /* TabBarView.swift */,
+				87A29A612A36DF9300BA6D11 /* CustomTabBar.swift */,
+			);
+			path = TabBarView;
+			sourceTree = "<group>";
+		};
+		874040DC2A6E6023001EEDFE /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				874327BF2A48B8FB00999F6C /* CustomButton.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		874040DD2A6E6976001EEDFE /* UserDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				870F49932A31FA8A000C45DD /* UserDetailView.swift */,
+			);
+			path = UserDetailView;
+			sourceTree = "<group>";
+		};
+		874040DE2A6E6987001EEDFE /* NewCardView */ = {
+			isa = PBXGroup;
+			children = (
+				874040DF2A6E69E4001EEDFE /* NewCardView.swift */,
+			);
+			path = NewCardView;
+			sourceTree = "<group>";
+		};
 		87B2B4A92A275A3D00270570 = {
 			isa = PBXGroup;
 			children = (
@@ -87,11 +186,9 @@
 			children = (
 				87B2B4B52A275A3D00270570 /* BankAppApp.swift */,
 				87B2B4B72A275A3D00270570 /* MainView.swift */,
-				87B2B4CC2A28C57900270570 /* Views */,
+				87B2B4CC2A28C57900270570 /* Scenes */,
 				87B2B4C92A28C2F000270570 /* Models */,
-				87A29A612A36DF9300BA6D11 /* CustomTabBar.swift */,
-				87B2B4D02A28CF1B00270570 /* VisualBlurEffect.swift */,
-				874327BF2A48B8FB00999F6C /* CustomButton.swift */,
+				874040DC2A6E6023001EEDFE /* SubView */,
 				87B2B4B92A275A3F00270570 /* Assets.xcassets */,
 			);
 			path = BankApp;
@@ -108,30 +205,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		87B2B4CC2A28C57900270570 /* Views */ = {
+		87B2B4CC2A28C57900270570 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				870F49972A3207CD000C45DD /* LogInView.swift */,
-				874327BD2A4636A800999F6C /* CustomTextFields.swift */,
-				87A29A632A36E46F00BA6D11 /* TabBarView.swift */,
-				87B2B4C32A275A8900270570 /* HomeView.swift */,
-				87B2B4D22A28D15A00270570 /* CategoryDetailView.swift */,
-				870F49932A31FA8A000C45DD /* UserDetailView.swift */,
-				87A29A652A36E52100BA6D11 /* SendView.swift */,
-				8753D8272A437F9B003E8CF5 /* PaymentsView.swift */,
-				87A29A672A36E52F00BA6D11 /* SettingsView.swift */,
-				87B2B4CD2A28C5AD00270570 /* ItemView */,
+				874040DB2A6E5FF6001EEDFE /* TabBarView */,
+				874040D42A6E5EA3001EEDFE /* LoginView */,
+				874040D62A6E5F3A001EEDFE /* HomeView */,
+				874040D82A6E5F65001EEDFE /* SendView */,
+				874040DA2A6E5FA1001EEDFE /* SettingsView */,
 			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		87B2B4CD2A28C5AD00270570 /* ItemView */ = {
-			isa = PBXGroup;
-			children = (
-				87B2B4C52A27674D00270570 /* CardView.swift */,
-				87B2B4CE2A28C78D00270570 /* CategoryItemView.swift */,
-			);
-			path = ItemView;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +299,7 @@
 				87A29A662A36E52100BA6D11 /* SendView.swift in Sources */,
 				87A29A682A36E52F00BA6D11 /* SettingsView.swift in Sources */,
 				870F49982A3207CD000C45DD /* LogInView.swift in Sources */,
+				874040E02A6E69E4001EEDFE /* NewCardView.swift in Sources */,
 				874327C02A48B8FB00999F6C /* CustomButton.swift in Sources */,
 				87B2B4B62A275A3D00270570 /* BankAppApp.swift in Sources */,
 				87B2B4C82A276F0600270570 /* CardModel.swift in Sources */,
