@@ -15,4 +15,6 @@ struct User: Identifiable {
     var mail = "oldf@gmail.com"
     var phoneNumber = "8(903)782-12-16"
     var cards: [Card]
+    
+    static let defaultUser = User(name: "Ignat", password: "12345", cards: [Card.defaultCard])
 }

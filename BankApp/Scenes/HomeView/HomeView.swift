@@ -23,12 +23,11 @@ struct HomeView: View {
     var body: some View {
         VStack {
             if selectedItem == nil {
-                
                 header()
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
-                        ForEach(Card.cards) { card in
+                        ForEach(user.cards) { card in
                             GeometryReader { geo in
                                 CardView(card: card)
                                     .rotation3DEffect(
@@ -78,7 +77,7 @@ struct HomeView: View {
             if selectedItem == nil {
                 
                 NavigationLink {
-                    NewCardView()
+                    NewCardView(user: $user)
                 } label: {
                     Text("Open a new card")
                         .foregroundColor(.white)
@@ -142,6 +141,16 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: .constant(User(name: "Ignat", password: "12345", cards: [Card(currency: .rub, paymentSystem: .mir, balance: 0)])), selectedItem: .constant(nil))
+        HomeView(
+            user: .constant(User(
+                name: "Ignat",
+                password: "12345",
+                cards: [Card(
+                    currency: .rub,
+                    paymentSystem: .mir
+                )]
+            )),
+            selectedItem: .constant(nil)
+        )
     }
 }

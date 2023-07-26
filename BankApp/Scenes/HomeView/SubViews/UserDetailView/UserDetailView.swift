@@ -42,7 +42,7 @@ struct UserDetailView: View {
                 HStack {
                     Image(systemName: "creditcard.circle")
                         .fontWeight(.heavy)
-                    Text("Toral balance: \(BalanceManager.shared.calculateTotalBalance(user: user))")
+                    Text("Toral balance: \( BalanceManager.shared.calculateTotalBalance(user: user))")
                     Spacer()
                 }
             }
@@ -62,6 +62,14 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: .constant(User(name: "Ignat", password: "12345", cards: [Card(currency: .rub, paymentSystem: .mir, balance: 0)])))
+        UserDetailView(
+            user: .constant(User(
+                name: "Ignat",
+                password: "12345",
+                cards: [Card(
+                    currency: .rub,
+                    paymentSystem: .mir
+                )]
+            )))
     }
 }

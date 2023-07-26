@@ -12,29 +12,15 @@ struct Card: Identifiable {
     let number = generateCardNumber()
     let currency: Currency
     let paymentSystem: PaymentSystem
-    let balance: Int
+    var balance: Double = 0
+    
+    static let defaultCard = Card(currency: .rub, paymentSystem: .mir)
     
     static var cards = [
-        Card(
-            currency: .rub,
-            paymentSystem: .mir,
-            balance: 12456
-        ),
-        Card(
-            currency: .usd,
-            paymentSystem: .masterCard,
-            balance: 345
-        ),
-        Card(
-            currency: .euro,
-            paymentSystem: .visa,
-            balance: 23
-        ),
-        Card(
-            currency: .yuan,
-            paymentSystem: .unionPay,
-            balance: 0
-        )
+        Card(currency: .rub, paymentSystem: .mir, balance: 12456.40),
+        Card(currency: .usd, paymentSystem: .masterCard, balance: 345),
+        Card(currency: .euro, paymentSystem: .visa, balance: 23.12),
+        Card(currency: .yuan, paymentSystem: .unionPay)
     ].shuffled()
     
     private static func generateCardNumber() -> String {

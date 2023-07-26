@@ -210,8 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				870F49952A31FDBC000C45DD /* UserModel.swift */,
-				87B2B4CA2A28C31B00270570 /* CategoryModel.swift */,
 				87B2B4C72A276F0600270570 /* CardModel.swift */,
+				87B2B4CA2A28C31B00270570 /* CategoryModel.swift */,
 				8753D8292A438403003E8CF5 /* PaymetsModel.swift */,
 			);
 			path = Models;

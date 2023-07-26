@@ -56,6 +56,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(currency: .rub, paymentSystem: .mir, balance: 100))
+        CardView(card: Card(currency: .rub, paymentSystem: .mir))
     }
 }

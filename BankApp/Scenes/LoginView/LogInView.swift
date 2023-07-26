@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LogInView: View {
-    @State private var user = User(name: "", password: "", cards: [Card(currency: .rub, paymentSystem: .mir, balance: 0)])
+    @State private var user = User.defaultUser
     
     @State private var userName = ""
     @State private var userPassword = ""

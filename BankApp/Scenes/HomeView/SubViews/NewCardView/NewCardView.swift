@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct NewCardView: View {
+    @Binding var user: User
+    
     @State private var paymentSystem = ""
     @State private var currency = ""
     
+    @Environment (\.dismiss) var dismiss
+    
     var body: some View {
         VStack {
-            CardView(card: Card (
-                currency: generateСurrency(currency),
-                paymentSystem: generatePaymentSystem(paymentSystem),
-                balance: 0
+            CardView(card: generateCard(
+                currency: currency,
+                paymentSystem: paymentSystem
             ))
             
             Spacer()
@@ -45,9 +48,9 @@ struct NewCardView: View {
             
             Spacer()
             
-            CustomButton(action: addNewCard, title: "Open new card")
+            CustomButton(action: addNewCard, title: "Open card")
             
-            Button(action: {}) {
+            Button(action: { dismiss() }) {
                 Text("Cancel")
                     .foregroundColor(Color.accentColor)
                     .font(.system(.title2, design: .rounded))
@@ -59,18 +62,23 @@ struct NewCardView: View {
             Spacer()
                 .frame(height: 300)
         }
+        .toolbar(.hidden)
         .padding(16)
         .background(.gray.opacity(0.05))
     }
     
     private func addNewCard() {
+        let card = generateCard(currency: currency, paymentSystem: paymentSystem)
+        user.cards.append(card)
+        dismiss()
+    }
+    
+    private func generateCard(currency: String, paymentSystem: String) -> Card {
         let card = Card(
             currency: generateСurrency(currency),
-            paymentSystem: generatePaymentSystem(paymentSystem),
-            balance: 0
+            paymentSystem: generatePaymentSystem(paymentSystem)
         )
-        
-        Card.cards.append(card)
+        return card
     }
     
     private func generateСurrency(_ currency: String) -> Currency {
@@ -106,6 +114,15 @@ struct NewCardView: View {
 
 struct NewCardView_Previews: PreviewProvider {
     static var previews: some View {
-        NewCardView()
+        NewCardView(
+            user: .constant(User(
+                name: "Alex",
+                password: "123",
+                cards: [Card(
+                    currency: .euro,
+                    paymentSystem: .mir
+                )]
+            ))
+        )
     }
 }

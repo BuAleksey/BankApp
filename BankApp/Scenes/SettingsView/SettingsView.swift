@@ -12,13 +12,20 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
+            Color(.gray)
+                .opacity(0.05)
+                .ignoresSafeArea(.all)
             VStack {
+                Text("Settings")
+                    .font(.title2)
+                    .fontWeight(.bold)
                 Spacer()
                 CustomButton(action: { activateRootLink.toggle() }, title: "Log out")
+                    .padding(.bottom, 30)
             }
+            .toolbar(.hidden)
+            .padding()
         }
-        .padding()
-        .background(.gray.opacity(0.05))
     }
 }
 
