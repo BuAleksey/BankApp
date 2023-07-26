@@ -10,11 +10,11 @@ import SwiftUI
 struct HomeView: View {
     @Binding var user: User
     @Binding var selectedItem: Category?
-    @Binding var isShowMainView: Bool
     
-    @State private var blur = false
     @State private var isShowingUserDetail = false
     @State private var isShowingNewCardView = false
+    
+    @State private var blur = false
     @State private var coloumns = [
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0)
@@ -76,18 +76,23 @@ struct HomeView: View {
             )
             
             if selectedItem == nil {
-                CustomButton(
-                    action: { isShowingNewCardView.toggle() },
-                    title: "Open a new card"
-                )
-                .fullScreenCover(isPresented: $isShowingNewCardView) {
-                    NewCardView(isShowingNewCardView: $isShowingNewCardView)
+                
+                NavigationLink {
+                    NewCardView()
+                } label: {
+                    Text("Open a new card")
+                        .foregroundColor(.white)
+                        .font(.system(.title2, design: .rounded))
+                        .fontWeight(.bold)
+                        .frame(width: 300, height: 50)
+                        .background(Color.accentColor)
+                        .cornerRadius(10)
                 }
             }
-            
             Spacer()
         }
         .background(.gray.opacity(0.05))
+        .toolbar(.hidden)
     }
     
     @ViewBuilder private func header() -> some View {
@@ -106,14 +111,14 @@ struct HomeView: View {
                     .resizable()
                     .frame(width: 50, height: 50)
             }
-            .onTapGesture {
-                isShowingUserDetail = true
-            }
-            .sheet(isPresented: $isShowingUserDetail) {
-                isShowingUserDetail = false
-            } content: {
-                UserDetailView(user: $user, isShowMainView: $isShowMainView)
-            }
+        }
+        .onTapGesture {
+            isShowingUserDetail = true
+        }
+        .sheet(isPresented: $isShowingUserDetail) {
+            isShowingUserDetail = false
+        } content: {
+            UserDetailView(user: $user)
         }
         .padding([.trailing, .leading])
     }
@@ -137,6 +142,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: .constant(User(name: "Ignat", password: "12345")), selectedItem: .constant(nil), isShowMainView: .constant(true))
+        HomeView(user: .constant(User(name: "Ignat", password: "12345", cards: [Card(currency: .rub, paymentSystem: .mir, balance: 0)])), selectedItem: .constant(nil))
     }
 }

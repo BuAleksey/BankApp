@@ -7,34 +7,14 @@
 
 import SwiftUI
 
-enum Language: String, CaseIterable {
-    case English
-    case Russian
-}
-
 struct SettingsView: View {
-    @State var text = ""
+    @Binding var activateRootLink: Bool
     
     var body: some View {
         ZStack {
             VStack {
-                Text("Settings")
-                    .font(.system(.largeTitle, design: .rounded))
-                    .fontWeight(.bold)
-                
-                HStack {
-                    Text("Language")
-                    Spacer()
-                    Picker("Language", selection: $text) {
-                        ForEach(Language.allCases, id: \.rawValue) { language in
-                            Text(language.rawValue)
-                        }
-                    }
-                    .font(.system(.title3, design: .rounded))
-                }
-                .font(.system(.title3, design: .rounded))
-                
                 Spacer()
+                CustomButton(action: { activateRootLink.toggle() }, title: "Log out")
             }
         }
         .padding()
@@ -44,6 +24,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(activateRootLink: .constant(true))
     }
 }

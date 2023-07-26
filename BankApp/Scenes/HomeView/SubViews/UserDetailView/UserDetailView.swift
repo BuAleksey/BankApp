@@ -9,11 +9,7 @@ import SwiftUI
 
 struct UserDetailView: View {
     @Binding var user: User
-    @Binding var isShowMainView: Bool
-    
     @Environment (\.dismiss) var dissmis
-    
-    private let colors = [Color("blue"), Color("lightBlue")]
     
     var body: some View {
         VStack {
@@ -41,29 +37,31 @@ struct UserDetailView: View {
                     Text(user.phoneNumber)
                     Spacer()
                 }
+                .padding(.bottom, 20)
+                
+                HStack {
+                    Image(systemName: "creditcard.circle")
+                        .fontWeight(.heavy)
+                    Text("Toral balance: \(BalanceManager.shared.calculateTotalBalance(user: user))")
+                    Spacer()
+                }
             }
             Spacer()
             
-            CustomButton(action: logOutButtonTapped, title: "Log out")
         }
         .padding(.top, 30)
         .padding()
         .frame(maxWidth: .infinity)
         .background(LinearGradient(
-            colors: colors,
+            colors: [Color("blue"), Color("lightBlue")],
             startPoint: .top,
             endPoint: .bottom
         ))
-    }
-    
-    private func logOutButtonTapped() {
-        isShowMainView = false
-        dissmis()
     }
 }
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(user: .constant(User(name: "Ignat", password: "12345")), isShowMainView: .constant(false))
+        UserDetailView(user: .constant(User(name: "Ignat", password: "12345", cards: [Card(currency: .rub, paymentSystem: .mir, balance: 0)])))
     }
 }

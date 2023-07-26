@@ -5,31 +5,35 @@
 //  Created by Buba on 31.05.2023.
 //
 
-import SwiftUI
+import Foundation
 
 struct Card: Identifiable {
     let id = UUID().uuidString
-    let colors = [Color("blue"), Color("lightBlue")]
     let number = generateCardNumber()
     let currency: Currency
     let paymentSystem: PaymentSystem
+    let balance: Int
     
     static var cards = [
         Card(
             currency: .rub,
-            paymentSystem: .mir
+            paymentSystem: .mir,
+            balance: 12456
         ),
         Card(
             currency: .usd,
-            paymentSystem: .masterCard
+            paymentSystem: .masterCard,
+            balance: 345
         ),
         Card(
             currency: .euro,
-            paymentSystem: .visa
+            paymentSystem: .visa,
+            balance: 23
         ),
         Card(
             currency: .yuan,
-            paymentSystem: .unionPay
+            paymentSystem: .unionPay,
+            balance: 0
         )
     ].shuffled()
     

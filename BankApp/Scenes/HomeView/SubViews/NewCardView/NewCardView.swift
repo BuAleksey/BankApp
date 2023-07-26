@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct NewCardView: View {
-    @Binding var isShowingNewCardView: Bool
-    
     @State private var paymentSystem = ""
     @State private var currency = ""
     
@@ -17,7 +15,8 @@ struct NewCardView: View {
         VStack {
             CardView(card: Card (
                 currency: generateСurrency(currency),
-                paymentSystem: generatePaymentSystem(paymentSystem)
+                paymentSystem: generatePaymentSystem(paymentSystem),
+                balance: 0
             ))
             
             Spacer()
@@ -48,7 +47,7 @@ struct NewCardView: View {
             
             CustomButton(action: addNewCard, title: "Open new card")
             
-            Button(action: { isShowingNewCardView.toggle() }) {
+            Button(action: {}) {
                 Text("Cancel")
                     .foregroundColor(Color.accentColor)
                     .font(.system(.title2, design: .rounded))
@@ -67,12 +66,11 @@ struct NewCardView: View {
     private func addNewCard() {
         let card = Card(
             currency: generateСurrency(currency),
-            paymentSystem: generatePaymentSystem(paymentSystem)
+            paymentSystem: generatePaymentSystem(paymentSystem),
+            balance: 0
         )
         
         Card.cards.append(card)
-        
-        isShowingNewCardView.toggle()
     }
     
     private func generateСurrency(_ currency: String) -> Currency {
@@ -108,6 +106,6 @@ struct NewCardView: View {
 
 struct NewCardView_Previews: PreviewProvider {
     static var previews: some View {
-        NewCardView(isShowingNewCardView: .constant(true))
+        NewCardView()
     }
 }

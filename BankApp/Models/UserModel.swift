@@ -14,4 +14,5 @@ struct User: Identifiable {
     var image = "human"
     var mail = "oldf@gmail.com"
     var phoneNumber = "8(903)782-12-16"
+    var cards: [Card]
 }

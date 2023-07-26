@@ -15,6 +15,7 @@
 		874327C02A48B8FB00999F6C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874327BF2A48B8FB00999F6C /* CustomButton.swift */; };
 		8753D8282A437F9B003E8CF5 /* PaymentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D8272A437F9B003E8CF5 /* PaymentsView.swift */; };
 		8753D82A2A438403003E8CF5 /* PaymetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D8292A438403003E8CF5 /* PaymetsModel.swift */; };
+		8766964E2A70F2F300896ACD /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8766964D2A70F2F300896ACD /* BalanceManager.swift */; };
 		87A29A622A36DF9300BA6D11 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A29A612A36DF9300BA6D11 /* CustomTabBar.swift */; };
 		87A29A642A36E46F00BA6D11 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A29A632A36E46F00BA6D11 /* TabBarView.swift */; };
 		87A29A662A36E52100BA6D11 /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A29A652A36E52100BA6D11 /* SendView.swift */; };
@@ -40,6 +41,7 @@
 		874327BF2A48B8FB00999F6C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8753D8272A437F9B003E8CF5 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsView.swift; sourceTree = "<group>"; };
 		8753D8292A438403003E8CF5 /* PaymetsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymetsModel.swift; sourceTree = "<group>"; };
+		8766964D2A70F2F300896ACD /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
 		87A29A612A36DF9300BA6D11 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		87A29A632A36E46F00BA6D11 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		87A29A652A36E52100BA6D11 /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendView.swift; sourceTree = "<group>"; };
@@ -89,12 +91,12 @@
 			isa = PBXGroup;
 			children = (
 				87B2B4C32A275A8900270570 /* HomeView.swift */,
-				874040D72A6E5F4E001EEDFE /* SubVoews */,
+				874040D72A6E5F4E001EEDFE /* SubViews */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
 		};
-		874040D72A6E5F4E001EEDFE /* SubVoews */ = {
+		874040D72A6E5F4E001EEDFE /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
 				87B2B4C52A27674D00270570 /* CardView.swift */,
@@ -104,7 +106,7 @@
 				874040DD2A6E6976001EEDFE /* UserDetailView */,
 				874040DE2A6E6987001EEDFE /* NewCardView */,
 			);
-			path = SubVoews;
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		874040D82A6E5F65001EEDFE /* SendView */ = {
@@ -165,6 +167,15 @@
 			path = NewCardView;
 			sourceTree = "<group>";
 		};
+		8766964C2A70F2D100896ACD /* Healpers */ = {
+			isa = PBXGroup;
+			children = (
+				8766964D2A70F2F300896ACD /* BalanceManager.swift */,
+			);
+			name = Healpers;
+			path = SubView;
+			sourceTree = "<group>";
+		};
 		87B2B4A92A275A3D00270570 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +200,7 @@
 				87B2B4CC2A28C57900270570 /* Scenes */,
 				87B2B4C92A28C2F000270570 /* Models */,
 				874040DC2A6E6023001EEDFE /* SubView */,
+				8766964C2A70F2D100896ACD /* Healpers */,
 				87B2B4B92A275A3F00270570 /* Assets.xcassets */,
 			);
 			path = BankApp;
@@ -198,8 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				870F49952A31FDBC000C45DD /* UserModel.swift */,
-				87B2B4C72A276F0600270570 /* CardModel.swift */,
 				87B2B4CA2A28C31B00270570 /* CategoryModel.swift */,
+				87B2B4C72A276F0600270570 /* CardModel.swift */,
 				8753D8292A438403003E8CF5 /* PaymetsModel.swift */,
 			);
 			path = Models;
@@ -302,6 +314,7 @@
 				874040E02A6E69E4001EEDFE /* NewCardView.swift in Sources */,
 				874327C02A48B8FB00999F6C /* CustomButton.swift in Sources */,
 				87B2B4B62A275A3D00270570 /* BankAppApp.swift in Sources */,
+				8766964E2A70F2F300896ACD /* BalanceManager.swift in Sources */,
 				87B2B4C82A276F0600270570 /* CardModel.swift in Sources */,
 				870F49942A31FA8A000C45DD /* UserDetailView.swift in Sources */,
 				874327BE2A4636A800999F6C /* CustomTextFields.swift in Sources */,

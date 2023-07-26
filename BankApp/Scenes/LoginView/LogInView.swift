@@ -8,51 +8,71 @@
 import SwiftUI
 
 struct LogInView: View {
+    @State private var user = User(name: "", password: "", cards: [Card(currency: .rub, paymentSystem: .mir, balance: 0)])
+    
     @State private var userName = ""
     @State private var userPassword = ""
-    @State private var user = User(name: "123", password: "123")
     
-    @State private var isShowMainView = false
-    @State private var isShowAlert = false
+    @State private var checkIsDone = false
+    @State private var showAlert = false
+    @State private var activateRootLink = false
     
     var body: some View {
-        VStack {
-            LogoView()
-            
-            TextField("Inter your name...", text: $userName)
-                .textFieldStyle(GradientTextField(image: "person"))
-                .padding(.bottom, 8)
-            
-            SecureTextField(password: $userPassword)
-                .padding(.bottom, 20)
-            
-            CustomButton(action: inputButtonTapped, title: "Input")
-                .fullScreenCover(isPresented: $isShowMainView) {
-                    TabBarView(user: $user, isShowMainView: $isShowMainView)
+        NavigationView {
+            VStack {
+                LogoView()
+                
+                TextField("Inter your name...", text: $userName)
+                    .textFieldStyle(GradientTextField(image: "person"))
+                    .padding(.bottom, 8)
+                
+                SecureTextField(password: $userPassword)
+                    .padding(.bottom, 20)
+                
+                NavigationLink(isActive: $activateRootLink) {
+                    TabBarView(user: $user, activateRootLink: $activateRootLink)
+                } label: {
+                    Text("Input")
+                        .foregroundColor(.white)
+                        .font(.system(.title2, design: .rounded))
+                        .fontWeight(.bold)
+                        .frame(width: 300, height: 50)
+                        .background(Color.accentColor)
+                        .cornerRadius(10)
                 }
-                .alert("Wrong format", isPresented: $isShowAlert, actions: {}) {
-                    Text("Enter your name and password")
+                .onAppear {
+                    userPassword = ""
                 }
+                .disabled(!makeBtbEnabled())
+                .simultaneousGesture(TapGesture().onEnded({ _ in
+                    checkLogoParametrs(name: userName, password: userPassword)
+                }))
+                .alert("Enter the correct data", isPresented: $showAlert, actions: {} )
+            }
+            .frame(width: 300)
+            .offset(y: -100)
         }
-        .frame(width: 300)
-        .offset(y: -100)
     }
     
-    private func inputButtonTapped() {
-        if checkLogoParametrs(name: userName, password: userPassword) {
-            isShowMainView = true
-            user = User(name: userName, password: userPassword)
+    private func checkLogoParametrs(name: String, password: String) {
+        if let _ = Double(name), let _ = Double(password) {
+            userName = ""
+            userPassword = ""
+            showAlert = true
+            checkIsDone = false
+        } else if name != "", password != "" {
+            user = User(name: name, password: password, cards: Card.cards)
+            checkIsDone = true
         } else {
             userName = ""
             userPassword = ""
-            isShowAlert = true
+            showAlert = true
+            checkIsDone = false
         }
     }
     
-    private func checkLogoParametrs(name: String, password: String) -> Bool {
-        if let _ = Double(name), let _ = Double(password) {
-            return false
-        } else if name != "", password != "" {
+    private func makeBtbEnabled() -> Bool {
+        if userName != "", userPassword != "" {
             return true
         } else {
             return false

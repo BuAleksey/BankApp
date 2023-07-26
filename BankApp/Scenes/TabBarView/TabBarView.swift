@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @Binding var user: User
+    @Binding var activateRootLink: Bool
+    
     @State private var selectedTab: Tab = .house
     @State private var selectedItem: Category? = nil
-    
-    @Binding var user: User
-    @Binding var isShowMainView: Bool
     
     var body: some View {
         ZStack {
@@ -21,11 +21,11 @@ struct TabBarView: View {
                     ForEach(Tab.allCases, id: \.rawValue) { tab in
                         switch selectedTab {
                         case .house:
-                            HomeView(user: $user, selectedItem: $selectedItem, isShowMainView: $isShowMainView)
+                            HomeView(user: $user, selectedItem: $selectedItem)
                         case .creditcard:
                             SendView()
                         case .gearshape:
-                            SettingsView()
+                            SettingsView(activateRootLink: $activateRootLink)
                         }
                     }
                 }
@@ -44,6 +44,6 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView(user: .constant(User(name: "", password: "")), isShowMainView: .constant(true))
+        TabBarView(user: .constant(User(name: "", password: "", cards: [Card(currency: .rub, paymentSystem: .mir, balance: 0)])), activateRootLink: .constant(false))
     }
 }

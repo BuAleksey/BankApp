@@ -34,7 +34,7 @@ struct CardView: View {
             .padding()
         }
         .frame(width: 242, height: 153)
-        .background(LinearGradient(colors: card.colors, startPoint: .leading, endPoint: .trailing))
+        .background(LinearGradient(colors: [Color("blue"), Color("lightBlue")], startPoint: .leading, endPoint: .trailing))
         .cornerRadius(15)
         .shadow(color: .accentColor.opacity(0.2), radius: 5, x: 4, y: 4)
         .padding()
@@ -56,6 +56,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(currency: .rub, paymentSystem: .mir))
+        CardView(card: Card(currency: .rub, paymentSystem: .mir, balance: 100))
     }
 }

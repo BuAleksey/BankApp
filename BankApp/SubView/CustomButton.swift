@@ -17,9 +17,9 @@ struct CustomButton: View {
                 .foregroundColor(.white)
                 .font(.system(.title2, design: .rounded))
                 .fontWeight(.bold)
+                .frame(width: 300, height: 50)
+                .background(Color.accentColor)
+                .cornerRadius(10)
         }
-        .frame(width: 300, height: 50)
-        .background(Color.accentColor)
-        .cornerRadius(10)
     }
 }
