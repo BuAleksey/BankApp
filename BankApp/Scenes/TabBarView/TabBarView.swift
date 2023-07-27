@@ -22,6 +22,7 @@ struct TabBarView: View {
                         switch selectedTab {
                         case .house:
                             HomeView(user: $user, selectedItem: $selectedItem)
+                                .edgesIgnoringSafeArea(.bottom)
                         case .creditcard:
                             SendView()
                         case .gearshape:
@@ -29,7 +30,6 @@ struct TabBarView: View {
                         }
                     }
                 }
-                .edgesIgnoringSafeArea(.bottom)
             }
             
             VStack {

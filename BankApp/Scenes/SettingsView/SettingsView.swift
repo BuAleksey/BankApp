@@ -22,6 +22,8 @@ struct SettingsView: View {
                 Spacer()
                 CustomButton(action: { activateRootLink.toggle() }, title: "Log out")
                     .padding(.bottom, 30)
+                
+                //TODO: change name and password, hidden any cards
             }
             .toolbar(.hidden)
             .padding()

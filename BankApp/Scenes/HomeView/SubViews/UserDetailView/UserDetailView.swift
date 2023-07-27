@@ -42,7 +42,11 @@ struct UserDetailView: View {
                 HStack {
                     Image(systemName: "creditcard.circle")
                         .fontWeight(.heavy)
-                    Text("Toral balance: \( BalanceManager.shared.calculateTotalBalance(user: user))")
+                    HStack {
+                        Text("Toral balance: ")
+                        Text(BalanceManager.shared.calculateTotalBalance(user: user).formatted())
+                        Text("₽")
+                    }
                     Spacer()
                 }
             }

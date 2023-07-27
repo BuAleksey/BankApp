@@ -8,81 +8,90 @@
 import SwiftUI
 
 struct SendView: View {
-    @State private var payments = ""
-    @State private var phone = ""
+    @State private var selectedTransfer = ""
     
     var body: some View {
+        
         ZStack{
             Color(.gray)
                 .opacity(0.05)
                 .ignoresSafeArea(.all)
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    HStack {
+            
+            if selectedTransfer == "" {
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading) {
+                        Text("Transfers")
+                            .font(.system(.title2, design: .rounded, weight: .bold))
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(Payments.transfers) { payments in
+                                    PaymentsView(
+                                        color: payments.color,
+                                        text: payments.titel,
+                                        image: payments.image,
+                                        action: {
+                                            withAnimation() {
+                                                selectedTransfer = payments.titel
+                                            }
+                                        })
+                                }
+                            }
+                            .padding(.trailing)
+                        }
+                        .padding(.bottom, 30)
+                        
                         Text("Payments")
+                            .font(.system(.title2, design: .rounded, weight: .bold))
                         
-                        Spacer()
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(Payments.payments) { payments in
+                                    PaymentsView(color: payments.color, text: payments.titel, image: payments.image, action: {})
+                                }
+                            }
+                            .padding(.trailing)
+                        }
+                        .padding(.bottom, 30)
                         
-                        Image(systemName: "qrcode.viewfinder")
-                            .foregroundColor(.blue)
-                    }
-                    .font(.system(.title, design: .rounded, weight: .bold))
-                    .padding(.trailing)
-                    
-                    TextField("Payments", text: $payments)
-                        .textFieldStyle(GradientTextField(image: "magnifyingglass"))
-                        .padding(.trailing)
-                        .padding(.bottom, 30)
-                    
-                    Text("Transfer by phone")
-                        .font(.system(.title2, design: .rounded, weight: .bold))
-                    
-                    TextField("Enter name or phone number", text: $phone)
-                        .textFieldStyle(GradientTextField(image: "phone"))
-                        .padding(.trailing)
-                        .padding(.bottom, 30)
-                    
-                    Text("Transfers")
-                        .font(.system(.title2, design: .rounded, weight: .bold))
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(Payments.transfers) { payments in
-                                PaymentsView(color: payments.color, text: payments.titel, image: payments.image)
+                        Text("Other")
+                            .font(.system(.title2, design: .rounded, weight: .bold))
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(Payments.other) { payments in
+                                    PaymentsView(color: payments.color, text: payments.titel, image: payments.image, action: {})
+                                }
                             }
+                            .padding(.trailing)
                         }
+                        .padding(.bottom, 120)
                     }
-                    .padding(.bottom, 30)
-                    
-                    Text("Payments")
-                        .font(.system(.title2, design: .rounded, weight: .bold))
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(Payments.payments) { payments in
-                                PaymentsView(color: payments.color, text: payments.titel, image: payments.image)
-                            }
-                        }
-                    }
-                    .padding(.bottom, 30)
-                    
-                    Text("Other")
-                        .font(.system(.title2, design: .rounded, weight: .bold))
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(Payments.other) { payments in
-                                PaymentsView(color: payments.color, text: payments.titel, image: payments.image)
-                            }
-                        }
-                    }
-                    .padding(.bottom, 120)
+                    .padding([.leading, .top])
                 }
-                .padding([.leading, .top])
+                .toolbar(.hidden)
+                .toolbar(.hidden, for: .tabBar)
+                .edgesIgnoringSafeArea(.bottom)
             }
-            .toolbar(.hidden)
-            .toolbar(.hidden, for: .tabBar)
-            .edgesIgnoringSafeArea(.bottom)
+            
+            if selectedTransfer == "Card to card" {
+                CardToCardView(selectedTransfer: $selectedTransfer)
+            }
+            
+            if selectedTransfer == "Between\naccounts" {
+                BetweenAccountsView(selectedTransfer: $selectedTransfer)
+            }
+            
+            if selectedTransfer == "Bank transfer" {
+                BankTransferView(selectedTransfer: $selectedTransfer)
+            }
+            
+            if selectedTransfer == "SWIFT transfer" {
+                SwiftTransferView(selectedTransfer: $selectedTransfer)
+            }
         }
+    }
+    
+    private func router() {
         
     }
 }

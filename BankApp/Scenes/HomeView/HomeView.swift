@@ -38,6 +38,7 @@ struct HomeView: View {
                             .frame(width: 250, height: 250)
                         }
                     }
+                    .padding(.trailing)
                 }
             }
             
@@ -56,7 +57,6 @@ struct HomeView: View {
                     VisualBlurEffect(uiVisualEffect: UIBlurEffect(
                         style: .systemUltraThinMaterial
                     ))
-                    .ignoresSafeArea(.all)
                     .onTapGesture {
                         tapToBack()
                     }

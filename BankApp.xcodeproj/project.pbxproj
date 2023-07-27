@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		870CA5222A72B03900F5EB0A /* CardToCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870CA5212A72B03900F5EB0A /* CardToCardView.swift */; };
+		870CA5242A72FA4700F5EB0A /* BetweenAccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870CA5232A72FA4700F5EB0A /* BetweenAccountsView.swift */; };
+		870CA5262A72FA7200F5EB0A /* BankTransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870CA5252A72FA7200F5EB0A /* BankTransferView.swift */; };
+		870CA5282A72FA8F00F5EB0A /* SwiftTransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870CA5272A72FA8F00F5EB0A /* SwiftTransferView.swift */; };
 		870F49942A31FA8A000C45DD /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49932A31FA8A000C45DD /* UserDetailView.swift */; };
 		870F49962A31FDBC000C45DD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49952A31FDBC000C45DD /* UserModel.swift */; };
 		870F49982A3207CD000C45DD /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49972A3207CD000C45DD /* LogInView.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		870CA5212A72B03900F5EB0A /* CardToCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToCardView.swift; sourceTree = "<group>"; };
+		870CA5232A72FA4700F5EB0A /* BetweenAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetweenAccountsView.swift; sourceTree = "<group>"; };
+		870CA5252A72FA7200F5EB0A /* BankTransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankTransferView.swift; sourceTree = "<group>"; };
+		870CA5272A72FA8F00F5EB0A /* SwiftTransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTransferView.swift; sourceTree = "<group>"; };
 		870F49932A31FA8A000C45DD /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		870F49952A31FDBC000C45DD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		870F49972A3207CD000C45DD /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -121,6 +129,10 @@
 		874040D92A6E5F6F001EEDFE /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				870CA5212A72B03900F5EB0A /* CardToCardView.swift */,
+				870CA5232A72FA4700F5EB0A /* BetweenAccountsView.swift */,
+				870CA5252A72FA7200F5EB0A /* BankTransferView.swift */,
+				870CA5272A72FA8F00F5EB0A /* SwiftTransferView.swift */,
 				8753D8272A437F9B003E8CF5 /* PaymentsView.swift */,
 			);
 			name = SubViews;
@@ -299,8 +311,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				87B2B4C42A275A8900270570 /* HomeView.swift in Sources */,
+				870CA5242A72FA4700F5EB0A /* BetweenAccountsView.swift in Sources */,
 				8753D82A2A438403003E8CF5 /* PaymetsModel.swift in Sources */,
+				870CA5262A72FA7200F5EB0A /* BankTransferView.swift in Sources */,
 				87B2B4CB2A28C31B00270570 /* CategoryModel.swift in Sources */,
+				870CA5222A72B03900F5EB0A /* CardToCardView.swift in Sources */,
 				87A29A642A36E46F00BA6D11 /* TabBarView.swift in Sources */,
 				87B2B4B82A275A3D00270570 /* MainView.swift in Sources */,
 				87A29A622A36DF9300BA6D11 /* CustomTabBar.swift in Sources */,
@@ -320,6 +335,7 @@
 				874327BE2A4636A800999F6C /* CustomTextFields.swift in Sources */,
 				87B2B4D12A28CF1B00270570 /* VisualBlurEffect.swift in Sources */,
 				870F49962A31FDBC000C45DD /* UserModel.swift in Sources */,
+				870CA5282A72FA8F00F5EB0A /* SwiftTransferView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

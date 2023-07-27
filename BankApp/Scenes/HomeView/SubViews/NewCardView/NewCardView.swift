@@ -10,8 +10,8 @@ import SwiftUI
 struct NewCardView: View {
     @Binding var user: User
     
-    @State private var paymentSystem = ""
-    @State private var currency = ""
+    @State private var paymentSystem = "mir"
+    @State private var currency = "rub"
     
     @Environment (\.dismiss) var dismiss
     
@@ -38,7 +38,7 @@ struct NewCardView: View {
             HStack {
                 Text("Currency:")
                 Spacer()
-                Picker("", selection: $currency) {
+                Picker("Currency", selection: $currency) {
                     ForEach(Currency.allCases, id: \.rawValue) { currency in
                         Text(currency.rawValue)
                     }
