@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SendView: View {
+    @Binding var user: User
     @State private var selectedTransfer = ""
     
     var body: some View {
@@ -74,7 +75,7 @@ struct SendView: View {
             }
             
             if selectedTransfer == "Card to card" {
-                CardToCardView(selectedTransfer: $selectedTransfer)
+                CardToCardView(user: $user, selectedTransfer: $selectedTransfer)
             }
             
             if selectedTransfer == "Between\naccounts" {
@@ -98,6 +99,6 @@ struct SendView: View {
 
 struct SendView_Previews: PreviewProvider {
     static var previews: some View {
-        SendView()
+        SendView(user: .constant(User.defaultUser))
     }
 }

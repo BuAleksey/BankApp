@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CardToCardView: View {
+    @Binding var user: User
     @Binding var selectedTransfer: String
     
     var body: some View {
@@ -26,6 +27,6 @@ struct CardToCardView: View {
 
 struct CardToCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardToCardView(selectedTransfer: .constant(""))
+        CardToCardView(user: .constant(User.defaultUser), selectedTransfer: .constant(""))
     }
 }

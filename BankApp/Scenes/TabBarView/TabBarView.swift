@@ -24,7 +24,7 @@ struct TabBarView: View {
                             HomeView(user: $user, selectedItem: $selectedItem)
                                 .edgesIgnoringSafeArea(.bottom)
                         case .creditcard:
-                            SendView()
+                            SendView(user: $user)
                         case .gearshape:
                             SettingsView(activateRootLink: $activateRootLink)
                         }
