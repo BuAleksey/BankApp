@@ -95,6 +95,16 @@
 			path = Transfers;
 			sourceTree = "<group>";
 		};
+		8721E3992A83C1A200849CB0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				87CB143F2A7C407400C4D18B /* CardManager.swift */,
+				8766964D2A70F2F300896ACD /* BalanceCalculator.swift */,
+				8721E3942A83BD2B00849CB0 /* Transfers */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		874040D42A6E5EA3001EEDFE /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,17 +207,6 @@
 			path = NewCardView;
 			sourceTree = "<group>";
 		};
-		8766964C2A70F2D100896ACD /* Healpers */ = {
-			isa = PBXGroup;
-			children = (
-				87CB143F2A7C407400C4D18B /* CardManager.swift */,
-				8766964D2A70F2F300896ACD /* BalanceCalculator.swift */,
-				8721E3942A83BD2B00849CB0 /* Transfers */,
-			);
-			name = Healpers;
-			path = SubView;
-			sourceTree = "<group>";
-		};
 		87B2B4A92A275A3D00270570 = {
 			isa = PBXGroup;
 			children = (
@@ -232,7 +231,7 @@
 				87B2B4CC2A28C57900270570 /* Scenes */,
 				87B2B4C92A28C2F000270570 /* Models */,
 				874040DC2A6E6023001EEDFE /* SubView */,
-				8766964C2A70F2D100896ACD /* Healpers */,
+				8721E3992A83C1A200849CB0 /* Helpers */,
 				87B2B4B92A275A3F00270570 /* Assets.xcassets */,
 			);
 			path = BankApp;
