@@ -19,6 +19,7 @@ struct CardToCardView: View {
     @State private var showAlertAboutSearchCard = false
     @State private var showAlertAboutBalance = false
     @State private var showAlertAboutCardDestination = false
+    @State private var transferIsComplete = false
     
     private let cardManager = CardManager.shared
     private let transaction = Transactions.shared
@@ -57,6 +58,12 @@ struct CardToCardView: View {
                     .textFieldStyle(.roundedBorder)
                     .padding(.bottom, 30)
                 
+                Image(systemName: transferIsComplete ? "checkmark.seal" : "")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.green)
+                    .padding(.bottom, 30)
+                
                 CustomButton(action: transfer, title: "Transfer")
                     .alert(
                         "Please choose the card",
@@ -89,7 +96,10 @@ struct CardToCardView: View {
     }
     
     private func transfer() {
-        guard var foundCard = checkingDetails.cardSearch(user: user, number: sendersCard) else {
+        guard var foundCard = checkingDetails.cardSearch(
+            user: user,
+            number: sendersCard
+        ) else {
             showAlertAboutSearchCard.toggle()
             return
         }
@@ -104,9 +114,19 @@ struct CardToCardView: View {
             return
         }
         
-        transaction.transferCardToCard(card: &foundCard, amount: Double(amount)!)
-        showView.toggle()
-        print(foundCard.balance)
+        withAnimation(.easeIn(duration: 0.7)) {
+            transferIsComplete.toggle()
+        }
+        
+        transaction.transferCardToCard(
+            user: &user,
+            sendersCard: foundCard,
+            amount: Double(amount)!
+        )
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            showView.toggle()
+        }
     }
 }
 
