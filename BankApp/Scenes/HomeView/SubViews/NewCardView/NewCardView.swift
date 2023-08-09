@@ -15,9 +15,11 @@ struct NewCardView: View {
     
     @Environment (\.dismiss) var dismiss
     
+    private let cardManager = CardManager.shared
+    
     var body: some View {
         VStack {
-            CardView(card: generateCard(
+            CardView(card: cardManager.generateCard(
                 currency: currency,
                 paymentSystem: paymentSystem
             ))
@@ -68,47 +70,12 @@ struct NewCardView: View {
     }
     
     private func addNewCard() {
-        let card = generateCard(currency: currency, paymentSystem: paymentSystem)
-        user.cards.append(card)
-        dismiss()
-    }
-    
-    private func generateCard(currency: String, paymentSystem: String) -> Card {
-        let card = Card(
-            currency: generateСurrency(currency),
-            paymentSystem: generatePaymentSystem(paymentSystem)
+        cardManager.addNewCard(
+            user: &user,
+            currency: currency,
+            paymentSystem: paymentSystem
         )
-        return card
-    }
-    
-    private func generateСurrency(_ currency: String) -> Currency {
-        switch currency {
-        case "rub":
-            return .rub
-        case "usd":
-            return .usd
-        case "euro":
-            return .euro
-        case "yuan":
-            return .yuan
-        default:
-            return .rub
-        }
-    }
-    
-    private func generatePaymentSystem(_ paymentSystem: String) -> PaymentSystem {
-        switch paymentSystem {
-        case "mir":
-            return .mir
-        case "masterCard":
-            return .masterCard
-        case "visa":
-            return .visa
-        case "unionPay":
-            return .unionPay
-        default:
-            return .mir
-        }
+        dismiss()
     }
 }
 

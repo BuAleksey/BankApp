@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SwiftTransferView: View {
-    @Binding var selectedTransfer: String
     
     var body: some View {
         ZStack {
@@ -17,8 +16,6 @@ struct SwiftTransferView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("SWIFT transfer")
-                
-                CustomButton(action: { selectedTransfer = "" }, title: "Back")
             }
         }
     }
@@ -26,6 +23,6 @@ struct SwiftTransferView: View {
 
 struct SwiftTransferView_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftTransferView(selectedTransfer: .constant(""))
+        SwiftTransferView()
     }
 }

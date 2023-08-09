@@ -9,7 +9,11 @@ import SwiftUI
 
 struct SendView: View {
     @Binding var user: User
-    @State private var selectedTransfer = ""
+    
+    @State private var showCardToCardView = false
+    @State private var showBetweenAccountsView = false
+    @State private var showBankTransferView = false
+    @State private var showSWIFTTransferView = false
     
     var body: some View {
         
@@ -18,7 +22,7 @@ struct SendView: View {
                 .opacity(0.05)
                 .ignoresSafeArea(.all)
             
-            if selectedTransfer == "" {
+           
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
                         Text("Transfers")
@@ -30,12 +34,24 @@ struct SendView: View {
                                         color: payments.color,
                                         text: payments.titel,
                                         image: payments.image,
-                                        action: {
-                                            withAnimation() {
-                                                selectedTransfer = payments.titel
-                                            }
-                                        })
+                                        action: { router(payments.titel) }
+                                    )
                                 }
+                            }
+                            .sheet(isPresented: $showCardToCardView) {
+                                CardToCardView(
+                                    user: $user,
+                                    showView: $showCardToCardView
+                                )
+                            }
+                            .sheet(isPresented: $showBetweenAccountsView) {
+                                BetweenAccountsView()
+                            }
+                            .sheet(isPresented: $showBankTransferView) {
+                                BankTransferView()
+                            }
+                            .sheet(isPresented: $showSWIFTTransferView) {
+                                SwiftTransferView()
                             }
                             .padding(.trailing)
                         }
@@ -73,27 +89,18 @@ struct SendView: View {
                 .toolbar(.hidden, for: .tabBar)
                 .edgesIgnoringSafeArea(.bottom)
             }
-            
-            if selectedTransfer == "Card to card" {
-                CardToCardView(user: $user, selectedTransfer: $selectedTransfer)
-            }
-            
-            if selectedTransfer == "Between\naccounts" {
-                BetweenAccountsView(selectedTransfer: $selectedTransfer)
-            }
-            
-            if selectedTransfer == "Bank transfer" {
-                BankTransferView(selectedTransfer: $selectedTransfer)
-            }
-            
-            if selectedTransfer == "SWIFT transfer" {
-                SwiftTransferView(selectedTransfer: $selectedTransfer)
-            }
-        }
     }
     
-    private func router() {
-        
+    private func router(_ paymentsTitile: String) {
+        switch paymentsTitile {
+        case "Card to card": showCardToCardView.toggle()
+        case "Between\naccounts": showBetweenAccountsView.toggle()
+        case "Bank transfer": showBankTransferView.toggle()
+        case "SWIFT transfer": showSWIFTTransferView.toggle()
+        default:
+            print("Error on SendView")
+            return
+        }
     }
 }
 

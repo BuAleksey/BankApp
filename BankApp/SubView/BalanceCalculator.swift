@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class BalanceManager {
-    static let shared = BalanceManager()
+final class BalanceCalculator {
+    static let shared = BalanceCalculator()
     
     private init() {}
     
@@ -29,4 +29,6 @@ final class BalanceManager {
         let roundedBalance = round(totalBalance * 10) / 10
         return roundedBalance
     }
+    
+    
 }

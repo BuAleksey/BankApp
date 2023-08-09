@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct CardView: View {
-    let card: Card
+    @State private var blur = true
+    var card = Card.defaultCard
+    
+    private let cardManager = CardManager.shared
     
     var body: some View {
         ZStack {
@@ -19,12 +22,20 @@ struct CardView: View {
                 
                 Spacer()
                 
+                Text(card.balance.formatted())
+                    .blur(radius: blur ? 3 : 0)
+                    .onTapGesture {
+                        blur.toggle()
+                    }
+                
+                Spacer()
+                
                 HStack {
-                    Text(card.number)
+                    Text("• \(card.number)")
                         .font(.system(size: 15, weight: .medium, design: .default))
                         .foregroundColor(.accentColor)
                     
-                    Text(returnCurrency())
+                    Text(cardManager.generateCurrencySymbol(card.currency))
                     
                     Spacer()
                     
@@ -39,23 +50,10 @@ struct CardView: View {
         .shadow(color: .accentColor.opacity(0.2), radius: 5, x: 4, y: 4)
         .padding()
     }
-    
-    private func returnCurrency() -> String {
-        switch card.currency {
-        case .rub:
-            return "₽"
-        case .usd:
-            return "$"
-        case .euro:
-            return "€"
-        case .yuan:
-            return "¥"
-        }
-    }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(currency: .rub, paymentSystem: .mir))
+        CardView(card: Card.defaultCard)
     }
 }

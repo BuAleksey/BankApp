@@ -43,7 +43,7 @@ struct LogInView: View {
                 .onAppear {
                     userPassword = ""
                 }
-                .disabled(!makeBtbEnabled())
+                .disabled(!makeBtnEnabled())
                 .simultaneousGesture(TapGesture().onEnded({ _ in
                     checkLogoParametrs(name: userName, password: userPassword)
                 }))
@@ -71,7 +71,7 @@ struct LogInView: View {
         }
     }
     
-    private func makeBtbEnabled() -> Bool {
+    private func makeBtnEnabled() -> Bool {
         if userName != "", userPassword != "" {
             return true
         } else {

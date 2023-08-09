@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BetweenAccountsView: View {
-    @Binding var selectedTransfer: String
     
     var body: some View {
         ZStack {
@@ -17,8 +16,6 @@ struct BetweenAccountsView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("Between Accounts")
-                
-                CustomButton(action: { selectedTransfer = "" }, title: "Back")
             }
         }
     }
@@ -26,6 +23,6 @@ struct BetweenAccountsView: View {
 
 struct BetweenAccountsView_Previews: PreviewProvider {
     static var previews: some View {
-        BetweenAccountsView(selectedTransfer: .constant(""))
+        BetweenAccountsView()
     }
 }

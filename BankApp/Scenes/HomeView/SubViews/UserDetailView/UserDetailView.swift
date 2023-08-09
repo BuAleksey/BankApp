@@ -44,7 +44,7 @@ struct UserDetailView: View {
                         .fontWeight(.heavy)
                     HStack {
                         Text("Toral balance: ")
-                        Text(BalanceManager.shared.calculateTotalBalance(user: user).formatted())
+                        Text(BalanceCalculator.shared.calculateTotalBalance(user: user).formatted())
                         Text("₽")
                     }
                     Spacer()

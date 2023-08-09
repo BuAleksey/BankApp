@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BankTransferView: View {
-    @Binding var selectedTransfer: String
     
     var body: some View {
         ZStack {
@@ -17,8 +16,6 @@ struct BankTransferView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("Bank Transfer")
-                
-                CustomButton(action: { selectedTransfer = "" }, title: "Back")
             }
         }
     }
@@ -26,6 +23,6 @@ struct BankTransferView: View {
 
 struct BankTransferView_Previews: PreviewProvider {
     static var previews: some View {
-        BankTransferView(selectedTransfer: .constant(""))
+        BankTransferView()
     }
 }

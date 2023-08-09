@@ -14,7 +14,7 @@ struct Card: Identifiable {
     let paymentSystem: PaymentSystem
     var balance: Double = 0
     
-    static let defaultCard = Card(currency: .rub, paymentSystem: .mir)
+    static let defaultCard = Card(currency: .rub, paymentSystem: .mir, balance: 1000)
     
     static var cards = [
         Card(currency: .rub, paymentSystem: .mir, balance: 12456.40),
@@ -25,7 +25,7 @@ struct Card: Identifiable {
     
     private static func generateCardNumber() -> String {
         let randomNumber = arc4random_uniform(9000) + 1000
-        return "• " + String(randomNumber)
+        return String(randomNumber)
     }
 }
 
