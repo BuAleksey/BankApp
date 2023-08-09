@@ -105,6 +105,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8721E39A2A83C2BC00849CB0 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				874327BF2A48B8FB00999F6C /* CustomButton.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
 		874040D42A6E5EA3001EEDFE /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,14 +191,6 @@
 			path = TabBarView;
 			sourceTree = "<group>";
 		};
-		874040DC2A6E6023001EEDFE /* SubView */ = {
-			isa = PBXGroup;
-			children = (
-				874327BF2A48B8FB00999F6C /* CustomButton.swift */,
-			);
-			path = SubView;
-			sourceTree = "<group>";
-		};
 		874040DD2A6E6976001EEDFE /* UserDetailView */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,8 +230,8 @@
 				87B2B4B72A275A3D00270570 /* MainView.swift */,
 				87B2B4CC2A28C57900270570 /* Scenes */,
 				87B2B4C92A28C2F000270570 /* Models */,
-				874040DC2A6E6023001EEDFE /* SubView */,
 				8721E3992A83C1A200849CB0 /* Helpers */,
+				8721E39A2A83C2BC00849CB0 /* SubView */,
 				87B2B4B92A275A3F00270570 /* Assets.xcassets */,
 			);
 			path = BankApp;
