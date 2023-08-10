@@ -53,6 +53,9 @@ struct CardToCardView: View {
                 
                 TextField("Enter card's number...", text: $destinationCardNumber)
                     .textFieldStyle(.roundedBorder)
+                    .onChange(of: destinationCardNumber) { newValue in
+                        textFieldFormat()
+                    }
                 
                 TextField("Amount...", text: $amount)
                     .textFieldStyle(.roundedBorder)
@@ -96,7 +99,7 @@ struct CardToCardView: View {
     }
     
     private func transfer() {
-        guard var foundCard = checkingDetails.cardSearch(
+        guard let foundCard = checkingDetails.cardSearch(
             user: user,
             number: sendersCard
         ) else {
@@ -127,6 +130,19 @@ struct CardToCardView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             showView.toggle()
         }
+    }
+    
+    private func textFieldFormat() {
+        var textWithoutWhitespace = 0
+        for character in destinationCardNumber {
+            if character != " " {
+                textWithoutWhitespace += 1
+                if textWithoutWhitespace > 16 {
+                    destinationCardNumber = String(destinationCardNumber.prefix(16))
+                }
+            }
+        }
+        // TODO: split text on bloks
     }
 }
 
