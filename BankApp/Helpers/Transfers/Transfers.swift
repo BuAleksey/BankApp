@@ -19,5 +19,19 @@ final class Transactions {
             }
         }
     }
+    
+    func transferBetweenAccounts(user: inout User, sendersCard: Card, destinationCard: Card, amount: Double) {
+        for (index, card) in user.cards.enumerated() {
+            if card.id == sendersCard.id {
+                user.cards[index].balance -= amount
+            } else if card.id == destinationCard.id {
+                user.cards[index].balance += BalanceCalculator.shared.calculateWithCurrencyRate(
+                    senderCard: sendersCard,
+                    destinationCard: destinationCard,
+                    amount: amount
+                )
+            }
+        }
+    }
 }
 

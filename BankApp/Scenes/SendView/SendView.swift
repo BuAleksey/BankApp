@@ -45,7 +45,10 @@ struct SendView: View {
                                 )
                             }
                             .sheet(isPresented: $showBetweenAccountsView) {
-                                BetweenAccountsView()
+                                BetweenAccountsView(
+                                    user: $user,
+                                    showView: $showBetweenAccountsView
+                                )
                             }
                             .sheet(isPresented: $showBankTransferView) {
                                 BankTransferView()
