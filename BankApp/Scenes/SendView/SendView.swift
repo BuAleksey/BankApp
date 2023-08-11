@@ -13,20 +13,17 @@ struct SendView: View {
     @State private var showCardToCardView = false
     @State private var showBetweenAccountsView = false
     @State private var showBankTransferView = false
-    @State private var showSWIFTTransferView = false
     
     var body: some View {
-        
-        ZStack{
+        ZStack {
             Color(.gray)
                 .opacity(0.05)
                 .ignoresSafeArea(.all)
             
-           
-                ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
                         Text("Transfers")
                             .font(.system(.title2, design: .rounded, weight: .bold))
+                            .padding(.leading)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(Payments.transfers) { payments in
@@ -56,15 +53,13 @@ struct SendView: View {
                                     showView: $showBankTransferView
                                 )
                             }
-                            .sheet(isPresented: $showSWIFTTransferView) {
-                                SwiftTransferView()
-                            }
-                            .padding(.trailing)
+                            .padding([.leading,.trailing])
                         }
-                        .padding(.bottom, 30)
+                        .padding(.bottom)
                         
                         Text("Payments")
                             .font(.system(.title2, design: .rounded, weight: .bold))
+                            .padding(.leading)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
@@ -72,12 +67,13 @@ struct SendView: View {
                                     PaymentsView(color: payments.color, text: payments.titel, image: payments.image, action: {})
                                 }
                             }
-                            .padding(.trailing)
+                            .padding([.leading,.trailing])
                         }
-                        .padding(.bottom, 30)
+                        .padding(.bottom)
                         
                         Text("Other")
                             .font(.system(.title2, design: .rounded, weight: .bold))
+                            .padding(.leading)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
@@ -85,16 +81,14 @@ struct SendView: View {
                                     PaymentsView(color: payments.color, text: payments.titel, image: payments.image, action: {})
                                 }
                             }
-                            .padding(.trailing)
+                            .padding([.leading,.trailing])
                         }
-                        .padding(.bottom, 120)
+                        
+                        Spacer()
                     }
-                    .padding([.leading, .top])
+                    .padding(.top)
                 }
                 .toolbar(.hidden)
-                .toolbar(.hidden, for: .tabBar)
-                .edgesIgnoringSafeArea(.bottom)
-            }
     }
     
     private func router(_ paymentsTitile: String) {
@@ -102,7 +96,6 @@ struct SendView: View {
         case "Card to card": showCardToCardView.toggle()
         case "Between\naccounts": showBetweenAccountsView.toggle()
         case "Bank transfer": showBankTransferView.toggle()
-        case "SWIFT transfer": showSWIFTTransferView.toggle()
         default:
             print("Error on SendView")
             return

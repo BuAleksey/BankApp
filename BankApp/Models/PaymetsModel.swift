@@ -16,8 +16,7 @@ struct Payments: Identifiable {
     static let transfers = [
         Payments(titel: "Card to card", image: "creditcard", color: "blue"),
         Payments(titel: "Between\naccounts", image: "arrow.left.arrow.right.circle", color: "blue"),
-        Payments(titel: "Bank transfer", image: "rublesign.circle", color: "blue"),
-        Payments(titel: "SWIFT transfer", image: "globe", color: "blue")
+        Payments(titel: "Bank transfer", image: "rublesign.circle", color: "blue")
     ]
     
     static let payments = [
