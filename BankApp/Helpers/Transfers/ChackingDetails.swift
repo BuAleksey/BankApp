@@ -30,6 +30,17 @@ final class CheckingDetails {
         return false
     }
     
+    func checkingDestinationBankInfo(bikCode: String, recipientsAccount: String) -> Bool {
+        if bikCode.count == 9,  recipientsAccount.count == 20 {
+            let firstPart = recipientsAccount.prefix(10)
+            let secondPart = recipientsAccount.suffix(10)
+            if let _ = Int(bikCode) , let _ = Int(firstPart), let _ = Int(secondPart) {
+                    return true
+            }
+        }
+        return false
+    }
+    
     func checkingAmount(amount: String, card: Card) -> Bool {
         if let doubleAmount = Double(amount) {
             if doubleAmount <= card.balance {

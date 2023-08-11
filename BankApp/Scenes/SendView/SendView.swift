@@ -51,7 +51,10 @@ struct SendView: View {
                                 )
                             }
                             .sheet(isPresented: $showBankTransferView) {
-                                BankTransferView()
+                                BankTransferView(
+                                    user: $user,
+                                    showView: $showBankTransferView
+                                )
                             }
                             .sheet(isPresented: $showSWIFTTransferView) {
                                 SwiftTransferView()
