@@ -20,15 +20,16 @@ struct Payments: Identifiable {
     ]
     
     static let payments = [
-        Payments(titel: "Phone bills", image: "menucard", color: "purple"),
-        Payments(titel: "Housing", image: "house.circle", color: "purple"),
-        Payments(titel: "Internet", image: "wifi.circle", color: "purple"),
-        Payments(titel: "Education", image: "studentdesk", color: "purple"),
-        Payments(titel: "Transport", image: "tram.circle", color: "purple")
+        Payments(titel: "", image: "", color: "gray"),
+        Payments(titel: "", image: "", color: "gray"),
+        Payments(titel: "", image: "", color: "gray"),
+        Payments(titel: "", image: "", color: "gray")
     ]
     
     static let other = [
-        Payments(titel: "ATM", image: "banknote", color: "purpleBlue"),
-        Payments(titel: "Money request", image: "arrow.uturn.down.circle", color: "purpleBlue")
+        Payments(titel: "", image: "", color: "gray"),
+        Payments(titel: "", image: "", color: "gray"),
+        Payments(titel: "", image: "", color: "gray"),
+        Payments(titel: "", image: "", color: "gray")
     ]
 }

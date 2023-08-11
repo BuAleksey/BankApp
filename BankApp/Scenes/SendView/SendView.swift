@@ -19,7 +19,6 @@ struct SendView: View {
             Color(.gray)
                 .opacity(0.05)
                 .ignoresSafeArea(.all)
-            
                     VStack(alignment: .leading) {
                         Text("Transfers")
                             .font(.system(.title2, design: .rounded, weight: .bold))
@@ -57,7 +56,7 @@ struct SendView: View {
                         }
                         .padding(.bottom)
                         
-                        Text("Payments")
+                        Text("Other")
                             .font(.system(.title2, design: .rounded, weight: .bold))
                             .padding(.leading)
                         
