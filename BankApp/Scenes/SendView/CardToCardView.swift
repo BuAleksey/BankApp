@@ -149,7 +149,7 @@ struct CardToCardView: View {
 struct CardToCardView_Previews: PreviewProvider {
     static var previews: some View {
         CardToCardView(
-            user: .constant(User.defaultUser),
+            user: .constant(DataBase.defaultUser),
             showView: .constant(true)
         )
     }

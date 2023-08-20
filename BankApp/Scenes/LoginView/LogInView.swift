@@ -8,74 +8,65 @@
 import SwiftUI
 
 struct LogInView: View {
-    @State private var user = User.defaultUser
+    @State private var user = DataBase.defaultUser
     
-    @State private var userName = ""
-    @State private var userPassword = ""
+    @State private var name = ""
+    @State private var password = ""
     
     @State private var checkIsDone = false
-    @State private var showAlert = false
+    @State private var isShowingHint = false
     @State private var activateRootLink = false
     
+    private let userManager = UserManager.shared
+    private let chekingDetails = CheckingDetails.shared
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 LogoView()
                 
-                TextField("Inter your name...", text: $userName)
+                if isShowingHint {
+                    HintView()
+                }
+                
+                TextField("Inter your name...", text: $name)
                     .textFieldStyle(GradientTextField(image: "person"))
+                    .onChange(of: name) { _ in
+                        checkIsDone = chekingDetails.checkingUsersLoginParametrs(login: name, password: password)
+                        if checkIsDone {
+                            user = userManager.createUser(name: name, password: password)
+                        }
+                    }
                     .padding(.bottom, 8)
                 
-                SecureTextField(password: $userPassword)
+                SecureTextField(password: $password)
+                    .onChange(of: password) { _ in
+                        checkIsDone = chekingDetails.checkingUsersLoginParametrs(login: name, password: password)
+                        if checkIsDone {
+                            user = userManager.createUser(name: name, password: password)
+                        }
+                    }
                     .padding(.bottom, 20)
                 
-                NavigationLink(isActive: $activateRootLink) {
-                    TabBarView(user: $user, activateRootLink: $activateRootLink)
-                } label: {
-                    Text("Input")
-                        .foregroundColor(.white)
-                        .font(.system(.title2, design: .rounded))
-                        .fontWeight(.bold)
-                        .frame(width: 300, height: 50)
-                        .background(Color.accentColor)
-                        .cornerRadius(10)
-                }
-                .onAppear {
-                    userPassword = ""
-                }
-                .disabled(!makeBtnEnabled())
-                .simultaneousGesture(TapGesture().onEnded({ _ in
-                    checkLogoParametrs(name: userName, password: userPassword)
-                }))
-                .alert("Enter the correct data", isPresented: $showAlert, actions: {} )
+                CustomButton(action: { activateRootLink.toggle() }, title: "Input")
+                    .navigationDestination(isPresented: $activateRootLink) {
+                        TabBarView(user: $user, activateRootLink: $activateRootLink)
+                    }
+                    .disabled(!checkIsDone)
+                    .onAppear {
+                        password = ""
+                        isShowingHint = false
+                    }
+                    .onTapGesture {
+                        withAnimation() {
+                            isShowingHint = true
+                        }
+                    }
+                
+                Spacer()
+                    .frame(height: 250)
             }
             .frame(width: 300)
-            .offset(y: -100)
-        }
-    }
-    
-    private func checkLogoParametrs(name: String, password: String) {
-        if let _ = Double(name), let _ = Double(password) {
-            userName = ""
-            userPassword = ""
-            showAlert = true
-            checkIsDone = false
-        } else if name != "", password != "" {
-            user = User(name: name, password: password, cards: Card.cards)
-            checkIsDone = true
-        } else {
-            userName = ""
-            userPassword = ""
-            showAlert = true
-            checkIsDone = false
-        }
-    }
-    
-    private func makeBtnEnabled() -> Bool {
-        if userName != "", userPassword != "" {
-            return true
-        } else {
-            return false
         }
     }
 }
@@ -100,5 +91,17 @@ struct LogoView: View {
                 .offset(y:-10)
         }
         .padding(.bottom, 50)
+    }
+}
+
+struct HintView: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundColor(.yellow)
+            Text("The name and password fields should not be empty")
+                .font(.system(.caption2))
+        }
+        .padding(.bottom, 8)
     }
 }

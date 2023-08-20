@@ -12,6 +12,14 @@ final class CheckingDetails {
     
     private init() {}
     
+    func checkingUsersLoginParametrs(login: String, password: String) -> Bool {
+        if login != "", password != "" {
+             return true
+        } else {
+            return false
+        }
+    }
+    
     func cardSearch(user: User, number: String) -> Card? {
         for card in user.cards {
             if card.number == number {

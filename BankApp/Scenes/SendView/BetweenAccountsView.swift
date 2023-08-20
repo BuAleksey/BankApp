@@ -164,6 +164,6 @@ struct BetweenAccountsView: View {
 
 struct BetweenAccountsView_Previews: PreviewProvider {
     static var previews: some View {
-        BetweenAccountsView(user: .constant(.defaultUser), showView: .constant(true))
+        BetweenAccountsView(user: .constant(DataBase.defaultUser), showView: .constant(true))
     }
 }

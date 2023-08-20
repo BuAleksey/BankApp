@@ -141,6 +141,6 @@ struct BankTransferView: View {
 
 struct BankTransferView_Previews: PreviewProvider {
     static var previews: some View {
-        BankTransferView(user: .constant(.defaultUser), showView: .constant(true))
+        BankTransferView(user: .constant(DataBase.defaultUser), showView: .constant(true))
     }
 }

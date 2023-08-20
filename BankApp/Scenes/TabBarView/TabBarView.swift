@@ -44,6 +44,9 @@ struct TabBarView: View {
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView(user: .constant(User(name: "", password: "", cards: [Card(currency: .rub, paymentSystem: .mir, balance: 0)])), activateRootLink: .constant(false))
+        TabBarView(
+            user: .constant(DataBase.defaultUser),
+            activateRootLink: .constant(false)
+        )
     }
 }

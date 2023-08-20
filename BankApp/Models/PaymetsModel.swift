@@ -20,16 +20,16 @@ struct Payments: Identifiable {
     ]
     
     static let payments = [
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray")
+        Payments(titel: "", image: "pencil", color: "gray"),
+        Payments(titel: "", image: "pencil", color: "gray"),
+        Payments(titel: "", image: "pencil", color: "gray"),
+        Payments(titel: "", image: "pencil", color: "gray")
     ]
     
     static let other = [
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray")
+        Payments(titel: "", image: "pencil", color: "gray"),
+        Payments(titel: "", image: "pencil", color: "gray"),
+        Payments(titel: "", image: "pencil", color: "gray"),
+        Payments(titel: "", image: "pencil", color: "gray")
     ]
 }

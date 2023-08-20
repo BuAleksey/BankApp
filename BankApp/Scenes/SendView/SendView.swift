@@ -104,6 +104,6 @@ struct SendView: View {
 
 struct SendView_Previews: PreviewProvider {
     static var previews: some View {
-        SendView(user: .constant(User.defaultUser))
+        SendView(user: .constant(DataBase.defaultUser))
     }
 }

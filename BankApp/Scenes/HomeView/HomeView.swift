@@ -38,7 +38,7 @@ struct HomeView: View {
                             .frame(width: 250, height: 250)
                         }
                     }
-                    .padding(.trailing)
+                    .padding(.trailing, 32)
                 }
             }
             
@@ -73,6 +73,7 @@ struct HomeView: View {
                 maxWidth: .infinity,
                 maxHeight: selectedItem == nil ? 250 : .infinity
             )
+            .ignoresSafeArea()
             
             if selectedItem == nil {
                 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     @State private var blur = true
-    var card = Card.defaultCard
+    var card = DataBase.defaultCard
     
     private let cardManager = CardManager.shared
     
@@ -54,6 +54,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card.defaultCard)
+        CardView(card: DataBase.defaultCard)
     }
 }

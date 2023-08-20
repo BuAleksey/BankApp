@@ -20,6 +20,8 @@
 		874327C02A48B8FB00999F6C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874327BF2A48B8FB00999F6C /* CustomButton.swift */; };
 		8753D8282A437F9B003E8CF5 /* PaymentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D8272A437F9B003E8CF5 /* PaymentsView.swift */; };
 		8753D82A2A438403003E8CF5 /* PaymetsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D8292A438403003E8CF5 /* PaymetsModel.swift */; };
+		8753D9D52A929BE800B821B9 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D9D42A929BE800B821B9 /* UserManager.swift */; };
+		8753D9D72A929DE200B821B9 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8753D9D62A929DE200B821B9 /* DataBase.swift */; };
 		8766964E2A70F2F300896ACD /* BalanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8766964D2A70F2F300896ACD /* BalanceCalculator.swift */; };
 		87A29A622A36DF9300BA6D11 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A29A612A36DF9300BA6D11 /* CustomTabBar.swift */; };
 		87A29A642A36E46F00BA6D11 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A29A632A36E46F00BA6D11 /* TabBarView.swift */; };
@@ -52,6 +54,8 @@
 		874327BF2A48B8FB00999F6C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8753D8272A437F9B003E8CF5 /* PaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsView.swift; sourceTree = "<group>"; };
 		8753D8292A438403003E8CF5 /* PaymetsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymetsModel.swift; sourceTree = "<group>"; };
+		8753D9D42A929BE800B821B9 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		8753D9D62A929DE200B821B9 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		8766964D2A70F2F300896ACD /* BalanceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCalculator.swift; sourceTree = "<group>"; };
 		87A29A612A36DF9300BA6D11 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		87A29A632A36E46F00BA6D11 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 		870BF86C2A86466400575585 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				8753D9D62A929DE200B821B9 /* DataBase.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -100,6 +105,7 @@
 		8721E3942A83BD2B00849CB0 /* Transfers */ = {
 			isa = PBXGroup;
 			children = (
+				8753D9D42A929BE800B821B9 /* UserManager.swift */,
 				8721E3952A83BD4B00849CB0 /* Transfers.swift */,
 				8721E3972A83BD6400849CB0 /* ChackingDetails.swift */,
 			);
@@ -120,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				874327BF2A48B8FB00999F6C /* CustomButton.swift */,
+				874327BD2A4636A800999F6C /* CustomTextFields.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -128,17 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				870F49972A3207CD000C45DD /* LogInView.swift */,
-				874040D52A6E5F14001EEDFE /* SubViews */,
 			);
 			path = LoginView;
-			sourceTree = "<group>";
-		};
-		874040D52A6E5F14001EEDFE /* SubViews */ = {
-			isa = PBXGroup;
-			children = (
-				874327BD2A4636A800999F6C /* CustomTextFields.swift */,
-			);
-			path = SubViews;
 			sourceTree = "<group>";
 		};
 		874040D62A6E5F3A001EEDFE /* HomeView */ = {
@@ -346,8 +344,10 @@
 				870CA5262A72FA7200F5EB0A /* BankTransferView.swift in Sources */,
 				87B2B4CB2A28C31B00270570 /* CategoryModel.swift in Sources */,
 				870CA5222A72B03900F5EB0A /* CardToCardView.swift in Sources */,
+				8753D9D52A929BE800B821B9 /* UserManager.swift in Sources */,
 				87A29A642A36E46F00BA6D11 /* TabBarView.swift in Sources */,
 				87B2B4B82A275A3D00270570 /* MainView.swift in Sources */,
+				8753D9D72A929DE200B821B9 /* DataBase.swift in Sources */,
 				87A29A622A36DF9300BA6D11 /* CustomTabBar.swift in Sources */,
 				87B2B4CF2A28C78D00270570 /* CategoryItemView.swift in Sources */,
 				8753D8282A437F9B003E8CF5 /* PaymentsView.swift in Sources */,
