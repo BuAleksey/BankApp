@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     @State private var blur = true
-    var card = DataBase.defaultCard
+    var card = DataBase.firstDefaultCard
     
     private let cardManager = CardManager.shared
     
@@ -35,7 +35,7 @@ struct CardView: View {
                         .font(.system(size: 15, weight: .medium, design: .default))
                         .foregroundColor(.accentColor)
                     
-                    Text(cardManager.generateCurrencySymbol(card.currency))
+                    Text(card.currency.symbol)
                     
                     Spacer()
                     
@@ -54,6 +54,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: DataBase.defaultCard)
+        CardView(card: DataBase.firstDefaultCard)
     }
 }

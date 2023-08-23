@@ -11,9 +11,9 @@ struct BetweenAccountsView: View {
     @Binding var user: User
     @Binding var showView: Bool
     
-    @State private var sendersCard = ""
+    @State private var selectionSenderCard = 0
+    @State private var selectionDestinationCard = 0
     @State private var amount = ""
-    @State private var destinationCard = ""
     @State private var destinationCards: [Card] = []
     
     @State private var showAlertAboutCardChoosing = false
@@ -31,77 +31,74 @@ struct BetweenAccountsView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Picker("Select card", selection: $sendersCard) {
+                Text("Card to card")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                
+                TabView(selection: $selectionSenderCard) {
                     ForEach(user.cards, id: \.number) { card in
-                        Text(
-                            cardManager.generateCurrencySymbol(
-                                card.currency
-                            )
-                            +
-                            " • "
-                            +
-                            card.number
-                        )
+                        CardView(card: card)
+                            .tag(card.id)
                     }
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.bottom)
-                .onChange(of: sendersCard) { _ in
+                .tabViewStyle(.page)
+                .frame(height: 240)
+                .onAppear {
+                    withAnimation {
+                        selectionSenderCard = user.cards.first?.id ?? 0
+                        guard let foundCard = checkingDetails.cardSearch(
+                            user: user,
+                            id: selectionSenderCard
+                        ) else { return }
+                        destinationCards = user.cards
+                        for (index, card) in user.cards.enumerated() {
+                            if card.id == foundCard.id {
+                                    destinationCards.remove(at: index)
+                            }
+                        }
+                    }
+                }
+                .onChange(of: selectionSenderCard) { _ in
                     guard let foundCard = checkingDetails.cardSearch(
                         user: user,
-                        number: sendersCard
+                        id: selectionSenderCard
                     ) else { return }
                     destinationCards = user.cards
                     for (index, card) in user.cards.enumerated() {
                         if card.id == foundCard.id {
-                            destinationCards.remove(at: index)
+                                destinationCards.remove(at: index)
                         }
                     }
                 }
                 
-                if sendersCard == "" {
-                    Picker("Select card", selection: $destinationCard) {
-                        ForEach(user.cards, id: \.number) { card in
-                            Text(
-                                cardManager.generateCurrencySymbol(
-                                    card.currency
-                                )
-                                +
-                                " • "
-                                +
-                                card.number
-                            )
-                        }
+                TabView(selection: $selectionDestinationCard) {
+                    ForEach(destinationCards, id: \.number) { card in
+                        CardView(card: card)
+                            .tag(card.id)
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.bottom)
-                } else {
-                    Picker("Select card", selection: $destinationCard) {
-                        ForEach(destinationCards, id: \.number) { card in
-                            Text(
-                                cardManager.generateCurrencySymbol(
-                                    card.currency
-                                )
-                                +
-                                " • "
-                                +
-                                card.number
-                            )
-                        }
+                }
+                .tabViewStyle(.page)
+                .frame(height: 240)
+                .onAppear {
+                    withAnimation {
+                        selectionDestinationCard = destinationCards.first?.id ?? 0
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(.bottom)
+                }
+                .onChange(of: selectionSenderCard) { newValue in
+                    withAnimation {
+                        selectionDestinationCard = destinationCards.first?.id ?? 0
+                    }
                 }
                 
-                TextField("Amount...", text: $amount)
-                    .textFieldStyle(.roundedBorder)
+                TextField("Amount", text: $amount)
+                    .textFieldStyle(GradientTextField(image: ""))
                     .padding(.bottom)
                 
                 Image(systemName: transferIsComplete ? "checkmark.seal" : "")
                     .resizable()
                     .frame(width: 30, height: 30)
                     .foregroundColor(.green)
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 20)
                 
                 CustomButton(action: transfer, title: "Transfer")
                     .alert(
@@ -131,12 +128,12 @@ struct BetweenAccountsView: View {
     }
     
     private func transfer() {
-        guard let foundSendersCard = checkingDetails.cardSearch(user: user, number: sendersCard) else {
+        guard let foundSendersCard = checkingDetails.cardSearch(user: user, id: selectionSenderCard) else {
             showAlertAboutCardChoosing.toggle()
             return
         }
         
-        guard let foundDestinationCard = checkingDetails.cardSearch(user: user, number: destinationCard) else {
+        guard let foundDestinationCard = checkingDetails.cardSearch(user: user, id: selectionDestinationCard) else {
             showAlertAboutCardChoosing.toggle()
             return
         }

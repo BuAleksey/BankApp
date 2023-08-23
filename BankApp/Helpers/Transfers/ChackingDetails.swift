@@ -20,9 +20,9 @@ final class CheckingDetails {
         }
     }
     
-    func cardSearch(user: User, number: String) -> Card? {
+    func cardSearch(user: User, id: Int) -> Card? {
         for card in user.cards {
-            if card.number == number {
+            if card.id == id {
                 return card
             }
         }

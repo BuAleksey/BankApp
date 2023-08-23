@@ -13,10 +13,11 @@ final class DataBase {
     static let defaultUser = User(
         name: "Ignat",
         password: "12345",
-        cards: [defaultCard]
+        cards: [firstDefaultCard, secondDefaultCard]
     )
     
-    static let defaultCard = Card(currency: .rub, paymentSystem: .mir, balance: 1000)
+    static let firstDefaultCard = Card(currency: .rub, paymentSystem: .mir, balance: 1000)
+    static let secondDefaultCard = Card(currency: .usd, paymentSystem: .masterCard, balance: 234)
     
     static var cards = [
         Card(currency: .rub, paymentSystem: .mir, balance: 12456.40),

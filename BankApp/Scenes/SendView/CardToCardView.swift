@@ -12,7 +12,7 @@ struct CardToCardView: View {
     @Binding var user: User
     @Binding var showView: Bool
     
-    @State private var sendersCard = ""
+    @State private var selectionCard = 0
     @State private var amount = ""
     @State private var destinationCardNumber = ""
     
@@ -32,40 +32,36 @@ struct CardToCardView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("Card to card")
-                    .font(.title2)
+                    .font(.title3)
                     .fontWeight(.bold)
                 
-                Picker("Select card", selection: $sendersCard) {
+                TabView(selection: $selectionCard) {
                     ForEach(user.cards, id: \.number) { card in
-                        Text(
-                            cardManager.generateCurrencySymbol(
-                                card.currency
-                            )
-                            +
-                            " • "
-                            +
-                            card.number
-                        )
+                        CardView(card: card)
+                            .tag(card.id)
                     }
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding([.bottom, .top], 30)
+                .tabViewStyle(.page)
+                .frame(height: 240)
+                .onAppear {
+                    selectionCard = user.cards.first?.id ?? 0
+                }
                 
-                TextField("Enter card's number...", text: $destinationCardNumber)
-                    .textFieldStyle(.roundedBorder)
-                    .onChange(of: destinationCardNumber) { newValue in
+                TextField("Destination card number", text: $destinationCardNumber)
+                    .textFieldStyle(GradientTextField(image: ""))
+                    .onChange(of: destinationCardNumber) { _ in
                         textFieldFormat()
                     }
                 
-                TextField("Amount...", text: $amount)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.bottom, 30)
+                TextField("Amount", text: $amount)
+                    .textFieldStyle(GradientTextField(image: ""))
+                    .padding(.bottom, 20)
                 
                 Image(systemName: transferIsComplete ? "checkmark.seal" : "")
                     .resizable()
                     .frame(width: 30, height: 30)
                     .foregroundColor(.green)
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 20)
                 
                 CustomButton(action: transfer, title: "Transfer")
                     .alert(
@@ -74,11 +70,11 @@ struct CardToCardView: View {
                         actions: {}
                     )
                     .alert(
-                        "Еhe amount entered is incorrect",
+                        "The amount entered is incorrect",
                         isPresented: $showAlertAboutBalance,
                         actions: {}
                     )
-                    .alert("Еhe destination card number is specified incorrectly",
+                    .alert("The destination card number is specified incorrectly",
                            isPresented: $showAlertAboutCardDestination,
                            actions: {}
                     )
@@ -101,7 +97,7 @@ struct CardToCardView: View {
     private func transfer() {
         guard let foundCard = checkingDetails.cardSearch(
             user: user,
-            number: sendersCard
+            id: selectionCard
         ) else {
             showAlertAboutSearchCard.toggle()
             return

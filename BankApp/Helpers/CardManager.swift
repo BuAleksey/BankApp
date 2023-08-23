@@ -57,17 +57,4 @@ final class CardManager {
             return .mir
         }
     }
-    
-    func generateCurrencySymbol(_ currency: Currency) -> String {
-        switch currency {
-        case .rub:
-            return "₽"
-        case .usd:
-            return "$"
-        case .euro:
-            return "€"
-        case .yuan:
-            return "¥"
-        }
-    }
 }

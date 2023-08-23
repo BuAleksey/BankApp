@@ -105,7 +105,6 @@
 		8721E3942A83BD2B00849CB0 /* Transfers */ = {
 			isa = PBXGroup;
 			children = (
-				8753D9D42A929BE800B821B9 /* UserManager.swift */,
 				8721E3952A83BD4B00849CB0 /* Transfers.swift */,
 				8721E3972A83BD6400849CB0 /* ChackingDetails.swift */,
 			);
@@ -115,6 +114,7 @@
 		8721E3992A83C1A200849CB0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8753D9D42A929BE800B821B9 /* UserManager.swift */,
 				87CB143F2A7C407400C4D18B /* CardManager.swift */,
 				8766964D2A70F2F300896ACD /* BalanceCalculator.swift */,
 				8721E3942A83BD2B00849CB0 /* Transfers */,

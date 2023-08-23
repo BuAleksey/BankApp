@@ -11,7 +11,7 @@ struct BankTransferView: View {
     @Binding var user: User
     @Binding var showView: Bool
     
-    @State private var sendersCard = ""
+    @State private var selectionCard = 0
     @State private var amount = ""
     @State private var bikCodeDestinationBank = ""
     @State private var recipientsAccount = ""
@@ -32,36 +32,32 @@ struct BankTransferView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Picker("Select card", selection: $sendersCard) {
+                TabView(selection: $selectionCard) {
                     ForEach(user.cards, id: \.number) { card in
-                        Text(
-                            cardManager.generateCurrencySymbol(
-                                card.currency
-                            )
-                            +
-                            " • "
-                            +
-                            card.number
-                        )
+                        CardView(card: card)
+                            .tag(card.id)
                     }
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.bottom)
+                .tabViewStyle(.page)
+                .frame(height: 240)
+                .onAppear {
+                    selectionCard = user.cards.first?.id ?? 0
+                }
                 
                 TextField("BIK code of destination bank", text: $bikCodeDestinationBank)
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(GradientTextField(image: ""))
                     .onChange(of: bikCodeDestinationBank) { _ in
                         bikCodeDestinationBank = String(bikCodeDestinationBank.prefix(9))
                     }
                 
                 TextField("Recipient's account", text: $recipientsAccount)
-                    .textFieldStyle(.roundedBorder)
+                    .textFieldStyle(GradientTextField(image: ""))
                     .onChange(of: recipientsAccount) { _ in
                         recipientsAccount = String(recipientsAccount.prefix(20))
                     }
                 
-                TextField("Amount...", text: $amount)
-                    .textFieldStyle(.roundedBorder)
+                TextField("Amount", text: $amount)
+                    .textFieldStyle(GradientTextField(image: ""))
                     .padding(.bottom, 30)
                 
                 Image(systemName: transferIsComplete ? "checkmark.seal" : "")
@@ -104,7 +100,7 @@ struct BankTransferView: View {
     private func transfer() {
         guard let foundCard = checkingDetails.cardSearch(
             user: user,
-            number: sendersCard
+            id: selectionCard
         ) else {
             showAlertAboutCardChoosing.toggle()
             return
