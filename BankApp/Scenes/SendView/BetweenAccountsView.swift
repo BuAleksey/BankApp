@@ -19,6 +19,7 @@ struct BetweenAccountsView: View {
     @State private var showAlertAboutCardChoosing = false
     @State private var showAlertAboutBalance = false
     @State private var transferIsComplete = false
+    @State private var blur = false
     
     private let cardManager = CardManager.shared
     private let transaction = Transactions.shared
@@ -29,7 +30,6 @@ struct BetweenAccountsView: View {
             Color(.gray)
                 .opacity(0.05)
                 .ignoresSafeArea()
-            
             VStack {
                 Text("Card to card")
                     .font(.title3)
@@ -42,7 +42,7 @@ struct BetweenAccountsView: View {
                     }
                 }
                 .tabViewStyle(.page)
-                .frame(height: 240)
+                .frame(height: 230)
                 .onAppear {
                     withAnimation {
                         selectionSenderCard = user.cards.first?.id ?? 0
@@ -78,7 +78,7 @@ struct BetweenAccountsView: View {
                     }
                 }
                 .tabViewStyle(.page)
-                .frame(height: 240)
+                .frame(height: 230)
                 .onAppear {
                     withAnimation {
                         selectionDestinationCard = destinationCards.first?.id ?? 0
@@ -93,12 +93,6 @@ struct BetweenAccountsView: View {
                 TextField("Amount", text: $amount)
                     .textFieldStyle(GradientTextField())
                     .padding(.bottom)
-                
-                Image(systemName: transferIsComplete ? "checkmark.seal" : "")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.green)
-                    .padding(.bottom, 20)
                 
                 CustomButton(action: transfer, title: "Transfer")
                     .alert(
@@ -123,8 +117,27 @@ struct BetweenAccountsView: View {
                 
                 Spacer()
             }
+            .zIndex(1)
             .padding()
+            
+            if blur {
+                VisualBlurEffect(uiVisualEffect: UIBlurEffect(
+                    style: .systemUltraThinMaterial
+                ))
+                .ignoresSafeArea()
+                .zIndex(2)
+            }
+            
+            if transferIsComplete {
+                Image(systemName: "checkmark.seal")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.green)
+                    .padding(.bottom, 20)
+                    .zIndex(3)
+            }
         }
+        .keyboardType(.decimalPad)
     }
     
     private func transfer() {
@@ -135,33 +148,38 @@ struct BetweenAccountsView: View {
             for: nil
         )
         
-        guard let foundSendersCard = checkingDetails.cardSearch(user: user, id: selectionSenderCard) else {
+        guard let foundSendersCard = checkingDetails.cardSearch(
+            user: user,
+            id: selectionSenderCard
+        ) else {
             showAlertAboutCardChoosing.toggle()
             return
         }
         
-        guard let foundDestinationCard = checkingDetails.cardSearch(user: user, id: selectionDestinationCard) else {
+        guard let foundDestinationCard = checkingDetails.cardSearch(
+            user: user,
+            id: selectionDestinationCard
+        ) else {
             showAlertAboutCardChoosing.toggle()
             return
         }
         
-        if !checkingDetails.checkingAmount(amount: amount, card: foundSendersCard) {
+        if checkingDetails.checkingAmount(amount: amount, card: foundSendersCard) {
+            withAnimation { blur.toggle() }
+            withAnimation(.easeIn(duration: 0.7)) { transferIsComplete.toggle() }
+            
+            transaction.transferBetweenAccounts(
+                user: &user,
+                sendersCard: foundSendersCard,
+                destinationCard: foundDestinationCard,
+                amount: Double(amount)!
+            )
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                showView.toggle()
+            }
+        } else {
             showAlertAboutBalance.toggle()
-        }
-        
-        withAnimation(.easeIn(duration: 0.7)) {
-            transferIsComplete.toggle()
-        }
-        
-        transaction.transferBetweenAccounts(
-            user: &user,
-            sendersCard: foundSendersCard,
-            destinationCard: foundDestinationCard,
-            amount: Double(amount)!
-        )
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            showView.toggle()
         }
     }
 }

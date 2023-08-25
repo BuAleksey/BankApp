@@ -26,12 +26,12 @@ struct SendView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(Payments.transfers) { payments in
-                                    PaymentsView(
-                                        color: payments.color,
-                                        text: payments.titel,
-                                        image: payments.image,
-                                        action: { router(payments.titel) }
-                                    )
+                                        PaymentsView(
+                                            color: payments.color,
+                                            text: payments.titel,
+                                            image: payments.image,
+                                            action: { router(payments.titel) }
+                                        )
                                 }
                             }
                             .sheet(isPresented: $showCardToCardView) {
@@ -63,7 +63,12 @@ struct SendView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(Payments.payments) { payments in
-                                    PaymentsView(color: payments.color, text: payments.titel, image: payments.image, action: {})
+                                    PaymentsView(
+                                        color: payments.color,
+                                        text: payments.titel,
+                                        image: payments.image,
+                                        action: {}
+                                    )
                                 }
                             }
                             .padding([.leading,.trailing])
@@ -77,12 +82,16 @@ struct SendView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(Payments.other) { payments in
-                                    PaymentsView(color: payments.color, text: payments.titel, image: payments.image, action: {})
+                                    PaymentsView(
+                                        color: payments.color,
+                                        text: payments.titel,
+                                        image: payments.image,
+                                        action: {}
+                                    )
                                 }
                             }
                             .padding([.leading,.trailing])
                         }
-                        
                         Spacer()
                     }
                     .padding(.top)

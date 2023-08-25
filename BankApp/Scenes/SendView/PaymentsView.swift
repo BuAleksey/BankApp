@@ -10,7 +10,7 @@ import SwiftUI
 struct PaymentsView: View {
     let color: String
     let text: String
-    let image: String
+    var image: String? = nil
     let action: () -> Void
     
     var body: some View {
@@ -26,8 +26,10 @@ struct PaymentsView: View {
                             .foregroundColor(.white.opacity(0.5))
                             .frame(width: 50, height: 50)
                         
-                        Image(systemName: image)
-                            .font(.title2)
+                        if let image = image {
+                            Image(systemName: image)
+                                .font(.title2)
+                        }
                     }
                     .padding(.bottom)
                     

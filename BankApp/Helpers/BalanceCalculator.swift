@@ -37,42 +37,42 @@ final class BalanceCalculator {
             case .rub:
                 return amount
             case .usd:
-                return amount / usd
+                return round(amount / usd * 10) / 10
             case .euro:
-                return amount / euro
+                return round(amount / euro * 10) / 10
             case .yuan:
-                return amount / yuan
+                return round(amount / yuan * 10) / 10
             }
         case .usd:
             switch destinationCard.currency {
             case .rub:
-                return amount * usd
+                return round(amount * usd * 10) / 10
             case .usd:
                 return amount
             case .euro:
-                return amount * usd / euro
+                return round(amount * usd / euro * 10) / 10
             case .yuan:
-                return amount * usd / yuan
+                return round(amount * usd / yuan * 10) / 10
             }
         case .euro:
             switch destinationCard.currency {
             case .rub:
-                return amount * euro
+                return round(amount * euro * 10) / 10
             case .usd:
-                return amount * euro / usd
+                return round(amount * euro / usd * 10) / 10
             case .euro:
                 return amount
             case .yuan:
-                return amount * euro / yuan
+                return round(amount * euro / yuan * 10) / 10
             }
         case .yuan:
             switch destinationCard.currency {
             case .rub:
-                return amount * yuan
+                return round(amount * yuan * 10) / 10
             case .usd:
-                return amount * yuan / usd
+                return round(amount * yuan / usd * 10) / 10
             case .euro:
-                return amount * yuan / euro
+                return round(amount * yuan / euro * 10) / 10
             case .yuan:
                 return amount
             }

@@ -10,7 +10,7 @@ import Foundation
 struct Payments: Identifiable {
     let id = UUID().uuidString
     let titel: String
-    let image: String
+    var image: String? = nil
     let color: String
     
     static let transfers = [
@@ -20,10 +20,10 @@ struct Payments: Identifiable {
     ]
     
     static let payments = [
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray")
+        Payments(titel: "", color: "gray"),
+        Payments(titel: "", color: "gray"),
+        Payments(titel: "", color: "gray"),
+        Payments(titel: "", color: "gray")
     ]
     
     static let other = [
