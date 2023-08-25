@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GradientTextField: TextFieldStyle {
-    let image: String
+    var image: String? = nil
     
     func _body(configuration: TextField<Self._Label>) -> some View {
         ZStack {
@@ -21,9 +21,11 @@ struct GradientTextField: TextFieldStyle {
                 .frame(height: 40)
             
             HStack {
-                Image(systemName: image)
-                    .foregroundColor(.accentColor)
-                configuration
+                if let image = image {
+                    Image(systemName: image)
+                        .foregroundColor(.accentColor)
+                }
+                    configuration
             }
             .padding([.leading, .trailing], 8)
         }

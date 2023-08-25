@@ -91,7 +91,7 @@ struct BetweenAccountsView: View {
                 }
                 
                 TextField("Amount", text: $amount)
-                    .textFieldStyle(GradientTextField(image: ""))
+                    .textFieldStyle(GradientTextField())
                     .padding(.bottom)
                 
                 Image(systemName: transferIsComplete ? "checkmark.seal" : "")
@@ -128,6 +128,13 @@ struct BetweenAccountsView: View {
     }
     
     private func transfer() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+        
         guard let foundSendersCard = checkingDetails.cardSearch(user: user, id: selectionSenderCard) else {
             showAlertAboutCardChoosing.toggle()
             return

@@ -23,27 +23,41 @@ struct LogInView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Spacer()
                 LogoView()
+                Spacer()
                 
                 if isShowingHint {
                     HintView()
                 }
                 
-                TextField("Inter your name...", text: $name)
+                TextField("Inter your name", text: $name)
                     .textFieldStyle(GradientTextField(image: "person"))
                     .onChange(of: name) { _ in
-                        checkIsDone = chekingDetails.checkingUsersLoginParametrs(login: name, password: password)
+                        checkIsDone = chekingDetails.checkingUsersLoginParametrs(
+                            login: name,
+                            password: password
+                        )
                         if checkIsDone {
-                            user = userManager.createUser(name: name, password: password)
+                            user = userManager.createUser(
+                                name: name,
+                                password: password
+                            )
                         }
                     }
                     .padding(.bottom, 8)
                 
                 SecureTextField(password: $password)
                     .onChange(of: password) { _ in
-                        checkIsDone = chekingDetails.checkingUsersLoginParametrs(login: name, password: password)
+                        checkIsDone = chekingDetails.checkingUsersLoginParametrs(
+                            login: name,
+                            password: password
+                        )
                         if checkIsDone {
-                            user = userManager.createUser(name: name, password: password)
+                            user = userManager.createUser(
+                                name: name,
+                                password: password
+                            )
                         }
                     }
                     .padding(.bottom, 20)
@@ -62,9 +76,7 @@ struct LogInView: View {
                             isShowingHint = true
                         }
                     }
-                
                 Spacer()
-                    .frame(height: 250)
             }
             .frame(width: 300)
         }
@@ -90,7 +102,6 @@ struct LogoView: View {
                 .font(.system(.body, design: .rounded))
                 .offset(y:-10)
         }
-        .padding(.bottom, 50)
     }
 }
 
@@ -102,6 +113,5 @@ struct HintView: View {
             Text("The name and password fields should not be empty")
                 .font(.system(.caption2))
         }
-        .padding(.bottom, 8)
     }
 }

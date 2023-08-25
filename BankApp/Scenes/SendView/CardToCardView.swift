@@ -20,6 +20,7 @@ struct CardToCardView: View {
     @State private var showAlertAboutBalance = false
     @State private var showAlertAboutCardDestination = false
     @State private var transferIsComplete = false
+    @State private var blur = false
     
     private let cardManager = CardManager.shared
     private let transaction = Transactions.shared
@@ -48,19 +49,13 @@ struct CardToCardView: View {
                 }
                 
                 TextField("Destination card number", text: $destinationCardNumber)
-                    .textFieldStyle(GradientTextField(image: ""))
+                    .textFieldStyle(GradientTextField())
                     .onChange(of: destinationCardNumber) { _ in
                         textFieldFormat()
                     }
                 
                 TextField("Amount", text: $amount)
-                    .textFieldStyle(GradientTextField(image: ""))
-                    .padding(.bottom, 20)
-                
-                Image(systemName: transferIsComplete ? "checkmark.seal" : "")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.green)
+                    .textFieldStyle(GradientTextField())
                     .padding(.bottom, 20)
                 
                 CustomButton(action: transfer, title: "Transfer")
@@ -90,11 +85,37 @@ struct CardToCardView: View {
                 
                 Spacer()
             }
+            .zIndex(1)
             .padding()
+            
+            if blur {
+                VisualBlurEffect(uiVisualEffect: UIBlurEffect(
+                    style: .systemUltraThinMaterial
+                ))
+                .ignoresSafeArea()
+                .zIndex(2)
+            }
+            
+            if transferIsComplete {
+                Image(systemName: "checkmark.seal")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.green)
+                    .padding(.bottom, 20)
+                    .zIndex(3)
+            }
         }
+        .keyboardType(.decimalPad)
     }
     
     private func transfer() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+        
         guard let foundCard = checkingDetails.cardSearch(
             user: user,
             id: selectionCard
@@ -113,9 +134,8 @@ struct CardToCardView: View {
             return
         }
         
-        withAnimation(.easeIn(duration: 0.7)) {
-            transferIsComplete.toggle()
-        }
+        withAnimation { blur.toggle() }
+        withAnimation(.easeIn(duration: 0.7)) { transferIsComplete.toggle() }
         
         transaction.transferCardToCard(
             user: &user,

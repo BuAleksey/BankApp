@@ -13,69 +13,46 @@ struct HomeView: View {
     
     @State private var isShowingUserDetail = false
     @State private var isShowingNewCardView = false
-    
     @State private var blur = false
+    
     @State private var coloumns = [
         GridItem(.flexible(), spacing: 0),
         GridItem(.flexible(), spacing: 0)
     ]
     
     var body: some View {
-        VStack {
-            if selectedItem == nil {
+        ZStack {
+            Color(.gray)
+                .opacity(0.05)
+                .ignoresSafeArea()
+            VStack {
                 header()
-                
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
                         ForEach(user.cards) { card in
                             GeometryReader { geo in
                                 CardView(card: card)
                                     .rotation3DEffect(
-                                        .degrees(-Double(geo.frame(in: .global).minX/15)),
+                                        .degrees(-Double(
+                                            geo.frame(in: .global).minX/15)
+                                        ),
                                         axis: (x: 0, y: 1, z: 0)
                                     )
                             }
-                            .frame(width: 250, height: 250)
+                            .frame(width: 250, height: 200)
                         }
                     }
                     .padding(.trailing, 32)
                 }
-            }
-            
-            ZStack {
+                
                 LazyVGrid(columns: coloumns, spacing: 10) {
                     ForEach(Category.categorys) { item in
                         CategoryItemView(item: item)
-                            .onLongPressGesture {
-                                tapToCategory(item)
-                            }
+                            .onLongPressGesture { tapToCategory(item) }
                     }
                 }
-                .zIndex(1)
                 
-                if blur {
-                    VisualBlurEffect(uiVisualEffect: UIBlurEffect(
-                        style: .systemUltraThinMaterial
-                    ))
-                    .onTapGesture {
-                        tapToBack()
-                    }
-                    .zIndex(2)
-                }
-                
-                if selectedItem != nil {
-                    CategoryDetailView(item: selectedItem!)
-                        .zIndex(3)
-                }
-            }
-            .offset(y: selectedItem == nil ? -50 : 0)
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: selectedItem == nil ? 250 : .infinity
-            )
-            .ignoresSafeArea()
-            
-            if selectedItem == nil {
+                Spacer()
                 
                 NavigationLink {
                     NewCardView(user: $user)
@@ -88,10 +65,24 @@ struct HomeView: View {
                         .background(Color.accentColor)
                         .cornerRadius(10)
                 }
+                Spacer()
             }
-            Spacer()
+            .zIndex(1)
+            
+            if blur {
+                VisualBlurEffect(uiVisualEffect: UIBlurEffect(
+                    style: .systemUltraThinMaterial
+                ))
+                .onTapGesture { tapToBack() }
+                .ignoresSafeArea()
+                .zIndex(2)
+            }
+            
+            if selectedItem != nil {
+                CategoryDetailView(item: selectedItem!)
+                    .zIndex(3)
+            }
         }
-        .background(.gray.opacity(0.05))
         .toolbar(.hidden)
     }
     
@@ -100,21 +91,17 @@ struct HomeView: View {
             Text("Welcome back,\n \(user.name)!")
                 .font(.system(size: 22, weight: .bold, design: .default))
                 .foregroundColor(.accentColor)
-            
             Spacer()
-            
             ZStack {
                 Circle()
                     .foregroundColor(Color("blue"))
-                    .frame(width: 80, height: 80)
+                    .frame(width: 70, height: 70)
                 Image("human")
                     .resizable()
                     .frame(width: 50, height: 50)
             }
         }
-        .onTapGesture {
-            isShowingUserDetail = true
-        }
+        .onTapGesture { isShowingUserDetail = true }
         .sheet(isPresented: $isShowingUserDetail) {
             isShowingUserDetail = false
         } content: {
@@ -124,18 +111,16 @@ struct HomeView: View {
     }
     
     private func tapToBack() {
-        withAnimation(.default) { blur = false }
-        
+        withAnimation() { blur = false }
         DispatchQueue.main.async {
             withAnimation(.default) { selectedItem = nil }
         }
     }
     
     private func tapToCategory(_ item: Category) {
-        withAnimation(.default) { selectedItem = item }
-        
+        withAnimation() { selectedItem = item }
         DispatchQueue.main.async {
-            withAnimation(.default) { blur = true }
+            withAnimation() { blur = true }
         }
     }
 }

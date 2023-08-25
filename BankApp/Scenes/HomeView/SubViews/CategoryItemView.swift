@@ -14,7 +14,6 @@ struct CategoryItemView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(.white)
-            
             VStack(alignment: .leading) {
                 Text(item.title)
                     .foregroundColor(.accentColor)

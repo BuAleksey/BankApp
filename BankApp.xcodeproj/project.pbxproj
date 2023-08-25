@@ -125,6 +125,7 @@
 		8721E39A2A83C2BC00849CB0 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				87B2B4D02A28CF1B00270570 /* VisualBlurEffect.swift */,
 				874327BF2A48B8FB00999F6C /* CustomButton.swift */,
 				874327BD2A4636A800999F6C /* CustomTextFields.swift */,
 			);
@@ -153,7 +154,6 @@
 			children = (
 				87B2B4C52A27674D00270570 /* CardView.swift */,
 				87B2B4CE2A28C78D00270570 /* CategoryItemView.swift */,
-				87B2B4D02A28CF1B00270570 /* VisualBlurEffect.swift */,
 				87B2B4D22A28D15A00270570 /* CategoryDetailView.swift */,
 				874040DD2A6E6976001EEDFE /* UserDetailView */,
 				874040DE2A6E6987001EEDFE /* NewCardView */,
@@ -503,6 +503,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -535,6 +536,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

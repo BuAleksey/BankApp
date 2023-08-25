@@ -45,19 +45,19 @@ struct BankTransferView: View {
                 }
                 
                 TextField("BIK code of destination bank", text: $bikCodeDestinationBank)
-                    .textFieldStyle(GradientTextField(image: ""))
+                    .textFieldStyle(GradientTextField())
                     .onChange(of: bikCodeDestinationBank) { _ in
                         bikCodeDestinationBank = String(bikCodeDestinationBank.prefix(9))
                     }
                 
                 TextField("Recipient's account", text: $recipientsAccount)
-                    .textFieldStyle(GradientTextField(image: ""))
+                    .textFieldStyle(GradientTextField())
                     .onChange(of: recipientsAccount) { _ in
                         recipientsAccount = String(recipientsAccount.prefix(20))
                     }
                 
                 TextField("Amount", text: $amount)
-                    .textFieldStyle(GradientTextField(image: ""))
+                    .textFieldStyle(GradientTextField())
                     .padding(.bottom, 30)
                 
                 Image(systemName: transferIsComplete ? "checkmark.seal" : "")
@@ -98,6 +98,13 @@ struct BankTransferView: View {
     }
     
     private func transfer() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
+        
         guard let foundCard = checkingDetails.cardSearch(
             user: user,
             id: selectionCard
@@ -119,9 +126,7 @@ struct BankTransferView: View {
             return
         }
         
-        withAnimation(.easeIn(duration: 0.7)) {
-            transferIsComplete.toggle()
-        }
+        withAnimation(.easeIn(duration: 0.7)) { transferIsComplete.toggle() }
         
         transaction.transferCardToCard(
             user: &user,
