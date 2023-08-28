@@ -13,7 +13,7 @@ final class UserManager {
     private init() {}
     
     func createUser(name: String, password: String) -> User {
-        let user = User(name: name, password: password, cards: DataBase.cards)
+        let user = User(name: name, password: password, cards: DataBase.shared.cards)
         return user
     }
 }

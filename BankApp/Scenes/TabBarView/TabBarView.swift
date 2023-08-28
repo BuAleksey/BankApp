@@ -45,7 +45,7 @@ struct TabBarView: View {
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
         TabBarView(
-            user: .constant(DataBase.defaultUser),
+            user: .constant(DataBase.shared.defaultUser),
             activateRootLink: .constant(false)
         )
     }

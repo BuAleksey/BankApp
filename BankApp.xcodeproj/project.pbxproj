@@ -15,6 +15,7 @@
 		870F49982A3207CD000C45DD /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F49972A3207CD000C45DD /* LogInView.swift */; };
 		8721E3962A83BD4B00849CB0 /* Transfers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721E3952A83BD4B00849CB0 /* Transfers.swift */; };
 		8721E3982A83BD6400849CB0 /* ChackingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721E3972A83BD6400849CB0 /* ChackingDetails.swift */; };
+		872F4A472A9C88CF00584323 /* CardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872F4A462A9C88CF00584323 /* CardInfoView.swift */; };
 		874040E02A6E69E4001EEDFE /* NewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874040DF2A6E69E4001EEDFE /* NewCardView.swift */; };
 		874327BE2A4636A800999F6C /* CustomTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874327BD2A4636A800999F6C /* CustomTextFields.swift */; };
 		874327C02A48B8FB00999F6C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874327BF2A48B8FB00999F6C /* CustomButton.swift */; };
@@ -49,6 +50,7 @@
 		870F49972A3207CD000C45DD /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		8721E3952A83BD4B00849CB0 /* Transfers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfers.swift; sourceTree = "<group>"; };
 		8721E3972A83BD6400849CB0 /* ChackingDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChackingDetails.swift; sourceTree = "<group>"; };
+		872F4A462A9C88CF00584323 /* CardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoView.swift; sourceTree = "<group>"; };
 		874040DF2A6E69E4001EEDFE /* NewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardView.swift; sourceTree = "<group>"; };
 		874327BD2A4636A800999F6C /* CustomTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFields.swift; sourceTree = "<group>"; };
 		874327BF2A48B8FB00999F6C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				8753D8272A437F9B003E8CF5 /* PaymentsView.swift */,
+				872F4A462A9C88CF00584323 /* CardInfoView.swift */,
 			);
 			name = SubView;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				874040E02A6E69E4001EEDFE /* NewCardView.swift in Sources */,
 				87CB14402A7C407400C4D18B /* CardManager.swift in Sources */,
 				874327C02A48B8FB00999F6C /* CustomButton.swift in Sources */,
+				872F4A472A9C88CF00584323 /* CardInfoView.swift in Sources */,
 				87B2B4B62A275A3D00270570 /* BankAppApp.swift in Sources */,
 				8766964E2A70F2F300896ACD /* BalanceCalculator.swift in Sources */,
 				8721E3962A83BD4B00849CB0 /* Transfers.swift in Sources */,

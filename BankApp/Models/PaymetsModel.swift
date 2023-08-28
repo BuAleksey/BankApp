@@ -12,24 +12,4 @@ struct Payments: Identifiable {
     let titel: String
     var image: String? = nil
     let color: String
-    
-    static let transfers = [
-        Payments(titel: "Card to card", image: "creditcard", color: "blue"),
-        Payments(titel: "Between\naccounts", image: "arrow.left.arrow.right.circle", color: "blue"),
-        Payments(titel: "Bank transfer", image: "rublesign.circle", color: "blue")
-    ]
-    
-    static let payments = [
-        Payments(titel: "", color: "gray"),
-        Payments(titel: "", color: "gray"),
-        Payments(titel: "", color: "gray"),
-        Payments(titel: "", color: "gray")
-    ]
-    
-    static let other = [
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray"),
-        Payments(titel: "", image: "", color: "gray")
-    ]
 }

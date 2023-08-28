@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LogInView: View {
-    @State private var user = DataBase.defaultUser
+    @State private var user = DataBase.shared.defaultUser
     
     @State private var name = ""
     @State private var password = ""

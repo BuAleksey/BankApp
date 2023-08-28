@@ -13,6 +13,9 @@ struct SendView: View {
     @State private var showCardToCardView = false
     @State private var showBetweenAccountsView = false
     @State private var showBankTransferView = false
+    @State private var opacity = 0.5
+    
+    private let dataBase = DataBase.shared
     
     var body: some View {
         ZStack {
@@ -25,7 +28,7 @@ struct SendView: View {
                             .padding(.leading)
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                ForEach(Payments.transfers) { payments in
+                                ForEach(dataBase.transfers) { payments in
                                         PaymentsView(
                                             color: payments.color,
                                             text: payments.titel,
@@ -62,13 +65,21 @@ struct SendView: View {
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                ForEach(Payments.payments) { payments in
+                                ForEach(dataBase.otherPayments) { payments in
                                     PaymentsView(
                                         color: payments.color,
                                         text: payments.titel,
                                         image: payments.image,
                                         action: {}
                                     )
+                                    .opacity(opacity)
+                                    .onAppear {
+                                        withAnimation(
+                                            .easeInOut(duration: 1)
+                                            .repeatForever()) {
+                                            opacity += 0.5
+                                        }
+                                    }
                                 }
                             }
                             .padding([.leading,.trailing])
@@ -81,13 +92,14 @@ struct SendView: View {
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                ForEach(Payments.other) { payments in
+                                ForEach(dataBase.otherPayments) { payments in
                                     PaymentsView(
                                         color: payments.color,
                                         text: payments.titel,
                                         image: payments.image,
                                         action: {}
                                     )
+                                    .opacity(opacity)
                                 }
                             }
                             .padding([.leading,.trailing])
@@ -113,6 +125,6 @@ struct SendView: View {
 
 struct SendView_Previews: PreviewProvider {
     static var previews: some View {
-        SendView(user: .constant(DataBase.defaultUser))
+        SendView(user: .constant(DataBase.shared.defaultUser))
     }
 }

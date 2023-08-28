@@ -37,12 +37,11 @@ struct BetweenAccountsView: View {
                 
                 TabView(selection: $selectionSenderCard) {
                     ForEach(user.cards, id: \.number) { card in
-                        CardView(card: card)
+                        CardInfoView(text: "From", card: card)
                             .tag(card.id)
                     }
                 }
                 .tabViewStyle(.page)
-                .frame(height: 230)
                 .onAppear {
                     withAnimation {
                         selectionSenderCard = user.cards.first?.id ?? 0
@@ -70,15 +69,15 @@ struct BetweenAccountsView: View {
                         }
                     }
                 }
+                .frame(height: 100)
                 
                 TabView(selection: $selectionDestinationCard) {
                     ForEach(destinationCards, id: \.number) { card in
-                        CardView(card: card)
+                        CardInfoView(text: "To", card: card)
                             .tag(card.id)
                     }
                 }
                 .tabViewStyle(.page)
-                .frame(height: 230)
                 .onAppear {
                     withAnimation {
                         selectionDestinationCard = destinationCards.first?.id ?? 0
@@ -89,6 +88,7 @@ struct BetweenAccountsView: View {
                         selectionDestinationCard = destinationCards.first?.id ?? 0
                     }
                 }
+                .frame(height: 100)
                 
                 TextField("Amount", text: $amount)
                     .textFieldStyle(GradientTextField())
@@ -166,7 +166,9 @@ struct BetweenAccountsView: View {
         
         if checkingDetails.checkingAmount(amount: amount, card: foundSendersCard) {
             withAnimation { blur.toggle() }
-            withAnimation(.easeIn(duration: 0.7)) { transferIsComplete.toggle() }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                withAnimation(.easeIn(duration: 0.9)) { transferIsComplete.toggle() }
+            }
             
             transaction.transferBetweenAccounts(
                 user: &user,
@@ -186,6 +188,9 @@ struct BetweenAccountsView: View {
 
 struct BetweenAccountsView_Previews: PreviewProvider {
     static var previews: some View {
-        BetweenAccountsView(user: .constant(DataBase.defaultUser), showView: .constant(true))
+        BetweenAccountsView(
+            user: .constant(DataBase.shared.defaultUser),
+            showView: .constant(true)
+        )
     }
 }

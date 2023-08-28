@@ -16,7 +16,6 @@ struct CardToCardView: View {
     @State private var amount = ""
     @State private var destinationCardNumber = ""
     
-    @State private var showAlertAboutSearchCard = false
     @State private var showAlertAboutBalance = false
     @State private var showAlertAboutCardDestination = false
     @State private var transferIsComplete = false
@@ -50,7 +49,11 @@ struct CardToCardView: View {
                 
                 TextField("Destination card number", text: $destinationCardNumber)
                     .textFieldStyle(GradientTextField())
+                    .foregroundColor(
+                        destinationCardNumber.count < 22 ? .red : .accentColor
+                    )
                     .onChange(of: destinationCardNumber) { _ in
+                        destinationCardNumber = String(destinationCardNumber.prefix(22))
                         textFieldFormat()
                     }
                 
@@ -60,18 +63,14 @@ struct CardToCardView: View {
                 
                 CustomButton(action: transfer, title: "Transfer")
                     .alert(
-                        "Please choose the card",
-                        isPresented: $showAlertAboutSearchCard,
-                        actions: {}
-                    )
-                    .alert(
                         "The amount entered is incorrect",
                         isPresented: $showAlertAboutBalance,
                         actions: {}
                     )
-                    .alert("The destination card number is specified incorrectly",
-                           isPresented: $showAlertAboutCardDestination,
-                           actions: {}
+                    .alert(
+                        "The destination card number is specified incorrectly",
+                        isPresented: $showAlertAboutCardDestination,
+                        actions: {}
                     )
                 
                 Button(action: { showView.toggle() }) {
@@ -119,12 +118,9 @@ struct CardToCardView: View {
         guard let foundCard = checkingDetails.cardSearch(
             user: user,
             id: selectionCard
-        ) else {
-            showAlertAboutSearchCard.toggle()
-            return
-        }
+        ) else { return }
         
-        if !checkingDetails.checkingDestinationCardNumber(number: destinationCardNumber) {
+        if !checkingDetails.checkingDestinationCardNumber(number: getDestinationCardNumber(number: destinationCardNumber)) {
             showAlertAboutCardDestination.toggle()
             return
         }
@@ -135,7 +131,9 @@ struct CardToCardView: View {
         }
         
         withAnimation { blur.toggle() }
-        withAnimation(.easeIn(duration: 0.7)) { transferIsComplete.toggle() }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            withAnimation(.easeIn(duration: 0.9)) { transferIsComplete.toggle() }
+        }
         
         transaction.transferCardToCard(
             user: &user,
@@ -149,23 +147,35 @@ struct CardToCardView: View {
     }
     
     private func textFieldFormat() {
-        var textWithoutWhitespace = 0
-        for character in destinationCardNumber {
-            if character != " " {
-                textWithoutWhitespace += 1
-                if textWithoutWhitespace > 16 {
-                    destinationCardNumber = String(destinationCardNumber.prefix(16))
+        var count = 0
+        if destinationCardNumber.count < 22 {
+            for character in destinationCardNumber {
+                if character != " " {
+                    count += 1
                 }
             }
+            if count % 4 == 0 {
+                destinationCardNumber.append(" ")
+            }
         }
-        // TODO: split text on bloks
     }
+    
+    private func getDestinationCardNumber(number: String) -> String {
+        var destinationCardNumber = ""
+        for character in number {
+            if character != " " {
+                destinationCardNumber.append(character)
+            }
+        }
+        return destinationCardNumber
+    }
+    
 }
 
 struct CardToCardView_Previews: PreviewProvider {
     static var previews: some View {
         CardToCardView(
-            user: .constant(DataBase.defaultUser),
+            user: .constant(DataBase.shared.defaultUser),
             showView: .constant(true)
         )
     }

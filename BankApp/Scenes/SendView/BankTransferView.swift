@@ -16,10 +16,10 @@ struct BankTransferView: View {
     @State private var bikCodeDestinationBank = ""
     @State private var recipientsAccount = ""
     
-    @State private var showAlertAboutCardChoosing = false
     @State private var showAlertAboutBalance = false
     @State private var showAlertAboutDestinationBankInfo = false
     @State private var transferIsComplete = false
+    @State private var blur = false
     
     private let cardManager = CardManager.shared
     private let transaction = Transactions.shared
@@ -30,7 +30,6 @@ struct BankTransferView: View {
             Color(.gray)
                 .opacity(0.05)
                 .ignoresSafeArea()
-            
             VStack {
                 TabView(selection: $selectionCard) {
                     ForEach(user.cards, id: \.number) { card in
@@ -46,12 +45,18 @@ struct BankTransferView: View {
                 
                 TextField("BIK code of destination bank", text: $bikCodeDestinationBank)
                     .textFieldStyle(GradientTextField())
+                    .foregroundColor(
+                        bikCodeDestinationBank.count < 9 ? .red : .accentColor
+                    )
                     .onChange(of: bikCodeDestinationBank) { _ in
                         bikCodeDestinationBank = String(bikCodeDestinationBank.prefix(9))
                     }
                 
                 TextField("Recipient's account", text: $recipientsAccount)
                     .textFieldStyle(GradientTextField())
+                    .foregroundColor(
+                        recipientsAccount.count < 20 ? .red : .accentColor
+                    )
                     .onChange(of: recipientsAccount) { _ in
                         recipientsAccount = String(recipientsAccount.prefix(20))
                     }
@@ -60,24 +65,13 @@ struct BankTransferView: View {
                     .textFieldStyle(GradientTextField())
                     .padding(.bottom, 30)
                 
-                Image(systemName: transferIsComplete ? "checkmark.seal" : "")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.green)
-                    .padding(.bottom, 30)
-                
                 CustomButton(action: transfer, title: "Transfer")
                     .alert(
-                        "Please choose the card",
-                        isPresented: $showAlertAboutCardChoosing,
-                        actions: {}
-                    )
-                    .alert(
-                        "Еhe amount entered is incorrect",
+                        "The amount entered is incorrect",
                         isPresented: $showAlertAboutBalance,
                         actions: {}
                     )
-                    .alert("Еhe destination bank info is specified incorrectly",
+                    .alert("The destination bank info is specified incorrectly",
                            isPresented: $showAlertAboutDestinationBankInfo,
                            actions: {}
                     )
@@ -93,7 +87,26 @@ struct BankTransferView: View {
                 
                 Spacer()
             }
+            .zIndex(0)
+            .keyboardType(.decimalPad)
             .padding()
+            
+            if blur {
+                VisualBlurEffect(uiVisualEffect: UIBlurEffect(
+                    style: .systemUltraThinMaterial
+                ))
+                .ignoresSafeArea()
+                .zIndex(2)
+            }
+            
+            if transferIsComplete {
+                Image(systemName: "checkmark.seal")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(.green)
+                    .padding(.bottom, 20)
+                    .zIndex(3)
+            }
         }
     }
     
@@ -108,10 +121,7 @@ struct BankTransferView: View {
         guard let foundCard = checkingDetails.cardSearch(
             user: user,
             id: selectionCard
-        ) else {
-            showAlertAboutCardChoosing.toggle()
-            return
-        }
+        ) else { return }
         
         if !checkingDetails.checkingDestinationBankInfo(
             bikCode: bikCodeDestinationBank,
@@ -126,7 +136,10 @@ struct BankTransferView: View {
             return
         }
         
-        withAnimation(.easeIn(duration: 0.7)) { transferIsComplete.toggle() }
+        withAnimation { blur.toggle() }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            withAnimation(.easeIn(duration: 0.9)) { transferIsComplete.toggle() }
+        }
         
         transaction.transferCardToCard(
             user: &user,
@@ -142,6 +155,9 @@ struct BankTransferView: View {
 
 struct BankTransferView_Previews: PreviewProvider {
     static var previews: some View {
-        BankTransferView(user: .constant(DataBase.defaultUser), showView: .constant(true))
+        BankTransferView(
+            user: .constant(DataBase.shared.defaultUser),
+            showView: .constant(true)
+        )
     }
 }
