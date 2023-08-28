@@ -39,6 +39,8 @@
 		87B2B4D12A28CF1B00270570 /* VisualBlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B2B4D02A28CF1B00270570 /* VisualBlurEffect.swift */; };
 		87B2B4D32A28D15A00270570 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B2B4D22A28D15A00270570 /* CategoryDetailView.swift */; };
 		87CB14402A7C407400C4D18B /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB143F2A7C407400C4D18B /* CardManager.swift */; };
+		87E044BC2A9D36E8004A30C7 /* PaymentSystems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E044BB2A9D36E8004A30C7 /* PaymentSystems.swift */; };
+		87E044BE2A9D3719004A30C7 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E044BD2A9D3719004A30C7 /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		87B2B4D02A28CF1B00270570 /* VisualBlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualBlurEffect.swift; sourceTree = "<group>"; };
 		87B2B4D22A28D15A00270570 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		87CB143F2A7C407400C4D18B /* CardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
+		87E044BB2A9D36E8004A30C7 /* PaymentSystems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSystems.swift; sourceTree = "<group>"; };
+		87E044BD2A9D3719004A30C7 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				8721E3952A83BD4B00849CB0 /* Transfers.swift */,
-				8721E3972A83BD6400849CB0 /* ChackingDetails.swift */,
 			);
 			path = Transfers;
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 				8753D9D42A929BE800B821B9 /* UserManager.swift */,
 				87CB143F2A7C407400C4D18B /* CardManager.swift */,
 				8766964D2A70F2F300896ACD /* BalanceCalculator.swift */,
+				8721E3972A83BD6400849CB0 /* ChackingDetails.swift */,
 				8721E3942A83BD2B00849CB0 /* Transfers */,
 			);
 			path = Helpers;
@@ -128,6 +132,7 @@
 		8721E39A2A83C2BC00849CB0 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				874040DB2A6E5FF6001EEDFE /* TabBarView */,
 				87B2B4D02A28CF1B00270570 /* VisualBlurEffect.swift */,
 				874327BF2A48B8FB00999F6C /* CustomButton.swift */,
 				874327BD2A4636A800999F6C /* CustomTextFields.swift */,
@@ -255,6 +260,7 @@
 				87B2B4C72A276F0600270570 /* CardModel.swift */,
 				87B2B4CA2A28C31B00270570 /* CategoryModel.swift */,
 				8753D8292A438403003E8CF5 /* PaymetsModel.swift */,
+				87E044BA2A9D36B1004A30C7 /* Enums */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -262,13 +268,21 @@
 		87B2B4CC2A28C57900270570 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				874040DB2A6E5FF6001EEDFE /* TabBarView */,
 				874040D42A6E5EA3001EEDFE /* LoginView */,
 				874040D62A6E5F3A001EEDFE /* HomeView */,
 				874040D82A6E5F65001EEDFE /* SendView */,
 				874040DA2A6E5FA1001EEDFE /* SettingsView */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		87E044BA2A9D36B1004A30C7 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				87E044BB2A9D36E8004A30C7 /* PaymentSystems.swift */,
+				87E044BD2A9D3719004A30C7 /* Currency.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,8 +359,10 @@
 				870CA5242A72FA4700F5EB0A /* BetweenAccountsView.swift in Sources */,
 				8753D82A2A438403003E8CF5 /* PaymetsModel.swift in Sources */,
 				870CA5262A72FA7200F5EB0A /* BankTransferView.swift in Sources */,
+				87E044BC2A9D36E8004A30C7 /* PaymentSystems.swift in Sources */,
 				87B2B4CB2A28C31B00270570 /* CategoryModel.swift in Sources */,
 				870CA5222A72B03900F5EB0A /* CardToCardView.swift in Sources */,
+				87E044BE2A9D3719004A30C7 /* Currency.swift in Sources */,
 				8753D9D52A929BE800B821B9 /* UserManager.swift in Sources */,
 				87A29A642A36E46F00BA6D11 /* TabBarView.swift in Sources */,
 				87B2B4B82A275A3D00270570 /* MainView.swift in Sources */,

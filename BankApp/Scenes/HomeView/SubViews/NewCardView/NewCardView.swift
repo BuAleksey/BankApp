@@ -10,8 +10,8 @@ import SwiftUI
 struct NewCardView: View {
     @Binding var user: User
     
-    @State private var paymentSystem = "mir"
-    @State private var currency = "rub"
+    @State private var paymentSystem = ""
+    @State private var currency = ""
     
     @Environment (\.dismiss) var dismiss
     
@@ -31,7 +31,7 @@ struct NewCardView: View {
                 Spacer()
                 Picker("Payment system", selection: $paymentSystem) {
                     ForEach(PaymentSystem.allCases, id: \.rawValue) { paymentSystem in
-                        Text(paymentSystem.rawValue)
+                        Text(paymentSystem.viewFormat)
                     }
                 }
             }
@@ -42,9 +42,11 @@ struct NewCardView: View {
                 Spacer()
                 Picker("Currency", selection: $currency) {
                     ForEach(Currency.allCases, id: \.rawValue) { currency in
-                        Text(currency.rawValue)
+                        Text(currency.symbol)
                     }
                 }
+                .frame(width: 200)
+                .pickerStyle(.segmented)
             }
             .font(.headline)
             
@@ -81,15 +83,6 @@ struct NewCardView: View {
 
 struct NewCardView_Previews: PreviewProvider {
     static var previews: some View {
-        NewCardView(
-            user: .constant(User(
-                name: "Alex",
-                password: "123",
-                cards: [Card(
-                    currency: .euro,
-                    paymentSystem: .mir
-                )]
-            ))
-        )
+        NewCardView(user: .constant(DataBase.shared.defaultUser))
     }
 }
